@@ -22,12 +22,14 @@ const MenuItem = ({text, onPress, icon}) => (
 
 
 const MenuContent = ({user, components: {menu}, actions, navigation}) => {
-    const _closeMenu = func => {
-        menu.close(false);
-        return func();
+    const _closeMenu = (func, animate) => {
+        menu.close(animate);
+        return func;
     };
 
-    const _logout = () => _closeMenu(actions.logout);
+    const _logout = () => _closeMenu(actions.logout(), true);
+
+    const _goToRoute = routeName => _closeMenu(navigation.navigate(routeName), true);
 
     return (
         <View style={styles.menuContentContainer}>
@@ -47,7 +49,7 @@ const MenuContent = ({user, components: {menu}, actions, navigation}) => {
             </Text>
 
             <View style={styles.menuItemsList}>
-                <MenuItem onPress={f => f}
+                <MenuItem onPress={() => _goToRoute('Profile')}
                           text='Mon profil'
                           icon='face'
                 />

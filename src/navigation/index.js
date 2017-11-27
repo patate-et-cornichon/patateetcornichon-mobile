@@ -1,12 +1,16 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
-import Initial from '../containers/Initial';
+import PrivateRoutes from './privateRoutes';
+import PublicRoutes from './publicRoutes';
 
 
 const AppNavigator = StackNavigator(
     {
-        Initial: {
-            screen: Initial
+        PrivateRoutes: {
+            screen: PrivateRoutes
+        },
+        PublicRoutes: {
+            screen: PublicRoutes
         }
     },
     {

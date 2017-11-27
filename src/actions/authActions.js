@@ -1,21 +1,42 @@
 import {AsyncStorage} from 'react-native';
 import {FileSystem} from 'expo';
-import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT} from './actionTypes';
+import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT, REMOVE_USER} from './actionTypes';
 import settings from '../config/settings';
 import {checkErrors} from '../utils/functions';
 import AvatarUtils from '../utils/avatar';
 
-
+/**
+ * Login user
+ *
+ * @param user
+ */
 export const login = user => ({
     type: LOGIN,
     user
 });
 
+/**
+ * Just Send a Logout info to Redux State
+ */
 export const logout = () => dispatch => (
     dispatch({
         type: LOGOUT
     })
 );
+
+/**
+ * Remove User from database and state
+ */
+export const removeUser = () => async dispatch => {
+    await AsyncStorage.multiRemove([
+        '@PatateEtCornichon:userToken',
+        '@PatateEtCornichon:user',
+    ]);
+
+    return dispatch({
+        type: REMOVE_USER
+    })
+};
 
 export const logProcessFinished = () => ({
     type: LOG_PROCESS_FINISHED
@@ -56,11 +77,8 @@ export const loginRequest = (isConnected = true) => async dispatch => {
             await AsyncStorage.setItem('@PatateEtCornichon:user', JSON.stringify(user));
             dispatch(login(user));
         } catch (e) {
-            await AsyncStorage.multiRemove([
-                '@PatateEtCornichon:userToken',
-                '@PatateEtCornichon:user',
-            ]);
             dispatch(logout());
+            dispatch(removeUser());
         }
     }
 

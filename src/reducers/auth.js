@@ -1,4 +1,4 @@
-import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT, SET_VIEW_LOADED} from '../actions/actionTypes';
+import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT, REMOVE_USER, SET_VIEW_LOADED} from '../actions/actionTypes';
 
 const initialState = {
     isLogged: false,
@@ -19,6 +19,12 @@ const auth = (state = initialState, action) => {
                 logProcessFinished
             };
         case LOGOUT:
+            return {
+                ...state,
+                isLogged: false,
+                logProcessFinished
+            };
+        case REMOVE_USER:
             return {
                 ...initialState,
                 logProcessFinished

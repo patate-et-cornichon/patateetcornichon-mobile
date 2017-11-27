@@ -2,6 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authActions from '../actions/authActions';
+import * as profileActions from '../actions/profileActions';
 import MenuContent from '../components/Menu/MenuContent';
 
 
@@ -23,7 +24,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(authActions, dispatch)
+    actions: bindActionCreators({
+        ...authActions,
+        ...profileActions
+    }, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuContentContainer);

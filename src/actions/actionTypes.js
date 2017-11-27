@@ -9,6 +9,7 @@ export const ADD_COMPONENT_REF = 'ADD_COMPONENT_REF';
  */
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const REMOVE_USER = 'REMOVE_USER';
 export const LOG_PROCESS_FINISHED = 'LOG_PROCESS_FINISHED';
 export const SET_VIEW_LOADED = 'SET_VIEW_LOADED';
 

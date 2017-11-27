@@ -57,6 +57,7 @@ export default class Menu extends React.Component {
 
     render() {
         const {menuOpened, menuWidth: width, opacity} = this.state;
+        const {navigation} = this.props;
 
         return (
             <AnimatedScrollView
@@ -74,7 +75,7 @@ export default class Menu extends React.Component {
                 <View style={[styles.menuContainer, {width}]}
                       onLayout={() => this._initScrollView()}
                 >
-                    <MenuContent/>
+                    <MenuContent navigation={navigation}/>
                 </View>
 
                 {/* Main View */}

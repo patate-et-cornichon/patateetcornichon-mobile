@@ -65,6 +65,11 @@ class Navigation extends React.Component {
         const {fontLoaded} = this.state;
         const {dispatch, nav, auth: {logProcessFinished}, homeRecipesLoaded} = this.props;
 
+        const navigation = addNavigationHelpers({
+            dispatch,
+            state: nav,
+        });
+
         if (!logProcessFinished || !fontLoaded || !homeRecipesLoaded) {
             return <AppLoading/>
         }
@@ -72,16 +77,16 @@ class Navigation extends React.Component {
         return (
             <View style={{flex: 1}}>
 
-                <Menu ref={c => this._addComponent({
-                    name: 'menu',
-                    ref: c
-                })} nav={nav}>
+                <Menu
+                    ref={c => this._addComponent({
+                        name: 'menu',
+                        ref: c
+                    })}
+                    navigation={navigation}
+                >
                     {/* React Navigation */}
                     <AppNavigator
-                        navigation={addNavigationHelpers({
-                            dispatch,
-                            state: nav,
-                        })}
+                        navigation={navigation}
                     />
                 </Menu>
 

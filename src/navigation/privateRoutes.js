@@ -7,6 +7,7 @@ import Search from '../containers/Search';
 import Favorites from '../containers/Favorites';
 import SingleRecipe from '../containers/SingleRecipe';
 import CommentAction from '../containers/CommentAction';
+import Profile from '../containers/Profile';
 import {defaultBackground, primaryColor, secondaryColor} from '../config/styles';
 
 
@@ -68,6 +69,9 @@ const PrivateRoutes = StackNavigator(
         },
         CommentAction: {
             screen: CommentAction
+        },
+        Profile: {
+            screen: Profile
         }
     },
     {

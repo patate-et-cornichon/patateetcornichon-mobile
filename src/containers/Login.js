@@ -1,6 +1,7 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {NavigationActions} from 'react-navigation';
+import * as authActions from '../actions/authActions';
 import Login from '../screens/Login/Login';
 
 
@@ -8,6 +9,11 @@ class LoginContainer extends React.Component {
     static navigationOptions = {
         header: null
     };
+
+    componentDidMount() {
+        const {removeUser} = this.props.actions;
+        removeUser();
+    }
 
     render() {
         return (
@@ -20,4 +26,8 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps)(LoginContainer);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(authActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

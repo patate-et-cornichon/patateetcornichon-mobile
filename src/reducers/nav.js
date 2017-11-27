@@ -1,4 +1,6 @@
+import {NavigationActions} from 'react-navigation';
 import AppNavigator from '../navigation';
+import {LOG_PROCESS_FINISHED, LOGOUT} from '../actions/actionTypes';
 
 
 const getCurrentRouteName = (state) => {
@@ -7,11 +9,20 @@ const getCurrentRouteName = (state) => {
 };
 
 export default (state, action) => {
-    const nextState = AppNavigator.router.getStateForAction(action, state);
+    let nextState = AppNavigator.router.getStateForAction(action, state);
 
-    /**
-     * Prevents navigating twice to the same route
-     */
+    if (action.type === LOG_PROCESS_FINISHED) {
+        nextState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({routeName: 'PrivateRoutes'}),
+            state
+        );
+    } else if (action.type === LOGOUT) {
+        nextState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({routeName: 'PublicRoutes'}),
+            state
+        );
+    }
+
     if (state && nextState) {
         const stateRouteName = getCurrentRouteName(state);
         const nextStateRouteName = getCurrentRouteName(nextState);
