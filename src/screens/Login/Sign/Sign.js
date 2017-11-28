@@ -126,9 +126,7 @@ export default class Sign extends React.Component {
                     <Input
                         autoCorrect={false}
                         autoCapitalize="none"
-                        backgroundColor="#BDC3C7"
                         placeholderColor="#88939a"
-                        color="#616b72"
                         icon="email"
                         keyboardType="email-address"
                         placeholder="Email"
