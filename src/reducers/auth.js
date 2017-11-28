@@ -24,11 +24,6 @@ const auth = (state = initialState, action) => {
                 isLogged: false,
                 logProcessFinished
             };
-        case REMOVE_USER:
-            return {
-                ...initialState,
-                logProcessFinished
-            };
         case LOG_PROCESS_FINISHED:
             return {
                 ...state,

@@ -10,11 +10,6 @@ class LoginContainer extends React.Component {
         header: null
     };
 
-    componentDidMount() {
-        const {removeUser} = this.props.actions;
-        removeUser();
-    }
-
     render() {
         return (
             <Login {...this.props}/>

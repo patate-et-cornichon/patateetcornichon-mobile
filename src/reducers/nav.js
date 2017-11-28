@@ -11,7 +11,7 @@ const getCurrentRouteName = (state) => {
 export default (state, action) => {
     let nextState = AppNavigator.router.getStateForAction(action, state);
 
-    if (action.type === LOG_PROCESS_FINISHED) {
+    if (action.type === LOG_PROCESS_FINISHED && action.isLogged) {
         nextState = AppNavigator.router.getStateForAction(
             NavigationActions.navigate({routeName: 'PrivateRoutes'}),
             state

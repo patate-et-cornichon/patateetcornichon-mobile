@@ -18,28 +18,19 @@ export const login = user => ({
 /**
  * Just Send a Logout info to Redux State
  */
-export const logout = () => dispatch => (
+export const logout = () => async dispatch => {
     dispatch({
         type: LOGOUT
-    })
-);
-
-/**
- * Remove User from database and state
- */
-export const removeUser = () => async dispatch => {
+    });
     await AsyncStorage.multiRemove([
         '@PatateEtCornichon:userToken',
         '@PatateEtCornichon:user',
-    ]);
-
-    return dispatch({
-        type: REMOVE_USER
-    })
+    ])
 };
 
-export const logProcessFinished = () => ({
-    type: LOG_PROCESS_FINISHED
+export const logProcessFinished = isLogged => ({
+    type: LOG_PROCESS_FINISHED,
+    isLogged
 });
 
 /**
@@ -51,11 +42,13 @@ export const logProcessFinished = () => ({
 export const loginRequest = (isConnected = true) => async dispatch => {
     const token = await AsyncStorage.getItem('@PatateEtCornichon:userToken');
     const user = await AsyncStorage.getItem('@PatateEtCornichon:user');
+    let isLogged = false;
 
     /**
      * If the user is not connected but has a token and self user info
      */
     if (!isConnected && token && user) {
+        isLogged = true;
         dispatch(login(JSON.parse(user)));
     }
 
@@ -75,14 +68,14 @@ export const loginRequest = (isConnected = true) => async dispatch => {
             const {user: remoteUser} = await checkErrors(await response);
             const user = await formatUser(remoteUser);
             await AsyncStorage.setItem('@PatateEtCornichon:user', JSON.stringify(user));
+            isLogged = true;
             dispatch(login(user));
         } catch (e) {
             dispatch(logout());
-            dispatch(removeUser());
         }
     }
 
-    dispatch(logProcessFinished());
+    dispatch(logProcessFinished(isLogged));
 };
 
 /**

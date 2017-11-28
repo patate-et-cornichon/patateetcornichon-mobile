@@ -6,11 +6,11 @@ import PublicRoutes from './publicRoutes';
 
 const AppNavigator = StackNavigator(
     {
-        PrivateRoutes: {
-            screen: PrivateRoutes
-        },
         PublicRoutes: {
             screen: PublicRoutes
+        },
+        PrivateRoutes: {
+            screen: PrivateRoutes
         }
     },
     {
