@@ -33,3 +33,8 @@ export const GET_FAVORITE_RECIPES = 'GET_FAVORITE_RECIPES';
  */
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
+
+/**
+ * Profile
+ */
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';

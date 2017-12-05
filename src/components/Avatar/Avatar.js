@@ -32,7 +32,7 @@ const Avatar = ({uri, style, ...props}) => {
                     return require('../../assets/images/avatars/default_avatar_8.png');
             }
         }
-        return {uri};
+        return {uri: uri + `?key=${Math.random()}`};
     };
 
     return (

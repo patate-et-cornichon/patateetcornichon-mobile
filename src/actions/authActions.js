@@ -4,6 +4,7 @@ import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT, REMOVE_USER} from './actionTypes';
 import settings from '../config/settings';
 import {checkErrors} from '../utils/functions';
 import AvatarUtils from '../utils/avatar';
+import {saveAvatar} from './profileActions';
 
 /**
  * Login user
@@ -38,8 +39,9 @@ export const logProcessFinished = isLogged => ({
  * the Redux Store
  *
  * @param isConnected
+ * @param processFinished
  */
-export const loginRequest = (isConnected = true) => async dispatch => {
+export const loginRequest = (isConnected = true, processFinished = true) => async dispatch => {
     const token = await AsyncStorage.getItem('@PatateEtCornichon:userToken');
     const user = await AsyncStorage.getItem('@PatateEtCornichon:user');
     let isLogged = false;
@@ -75,7 +77,7 @@ export const loginRequest = (isConnected = true) => async dispatch => {
         }
     }
 
-    dispatch(logProcessFinished(isLogged));
+    if (processFinished) dispatch(logProcessFinished(isLogged));
 };
 
 /**
@@ -119,10 +121,7 @@ const formatUser = async user => {
         const reg = /^(\w{3})$/;
         const extension = reg.test(avatarFileExtension) ? avatarFileExtension : 'jpg';
 
-        const avatarFromStorage = `${FileSystem.documentDirectory}user.${extension}`;
-
-        const {uri: imageDownloadedPath} = await FileSystem.downloadAsync(user.avatar, avatarFromStorage);
-        user.avatar = imageDownloadedPath;
+        user.avatar = await saveAvatar(user.avatar, extension);
     }
 
     return user;

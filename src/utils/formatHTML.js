@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Linking} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {WebBrowser} from 'expo';
 import InlineImage from '../components/InlineImage';
 import Text from '../components/Text/Text';
 import {primaryColor} from '../config/styles';
@@ -51,7 +52,7 @@ export default class FormatHTML {
                 return (
                     <Text key={i}
                           style={[contentStyles, {color: primaryColor}]}
-                          onPress={() => Linking.openURL(link)}
+                          onPress={() => WebBrowser.openBrowserAsync(link)}
                     >
                         {anchor}
                     </Text>
