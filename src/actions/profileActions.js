@@ -53,7 +53,7 @@ export const patchUserInfo = fields => async (dispatch, getState) => {
             if (field === 'avatar') {
                 data.append('avatar', {
                     uri: value,
-                    type: fields[field].type,
+                    type: 'image/jpg',
                     name: 'avatar.jpg'
                 });
                 continue;

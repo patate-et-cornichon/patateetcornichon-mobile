@@ -14,7 +14,6 @@ export default class Profile extends React.Component {
         this.state = {
             inputs: {
                 avatar: {
-                    type: '',
                     value: user.avatar
                 },
                 first_name: {
@@ -53,7 +52,12 @@ export default class Profile extends React.Component {
         return Object.keys(inputs).map(input => {
             const changeState = value => {
                 inputs[input].value = value;
-                this.setState(inputs);
+                this.setState({
+                    inputs: {
+                        avatar,
+                        ...inputs
+                    }
+                });
             };
 
             return (
@@ -79,7 +83,7 @@ export default class Profile extends React.Component {
             quality: 0.5,
             aspect: [1, 1]
         };
-        const {cancelled, uri: value, type} = await ImagePicker.launchImageLibraryAsync(options);
+        const {cancelled, uri: value} = await ImagePicker.launchImageLibraryAsync(options);
 
         if (!cancelled) {
             const {inputs} = this.state;
@@ -87,11 +91,10 @@ export default class Profile extends React.Component {
                 inputs: {
                     ...inputs,
                     avatar: {
-                        type,
                         value
                     }
                 }
-            })
+            });
         }
     }
 
@@ -120,7 +123,9 @@ export default class Profile extends React.Component {
                 {/* User Avatar */}
                 <TouchableWithoutFeedback onPress={() => this._launchImagePicker()}>
                     <View style={styles.profileAvatarView}>
-                        <Avatar uri={avatar.value} style={styles.profileAvatar}/>
+                        <Avatar uri={avatar.value}
+                                style={styles.profileAvatar}
+                        />
                     </View>
                 </TouchableWithoutFeedback>
 

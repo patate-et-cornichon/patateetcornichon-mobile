@@ -4,13 +4,29 @@ import styles from './styles';
 import AvatarUtils from '../../utils/avatar';
 
 
-const Avatar = ({uri, style, ...props}) => {
+export default class Avatar extends React.Component {
+    state = {
+        source: ''
+    };
+
+    componentWillMount() {
+        const {uri} = this.props;
+        const source = this._getSource(uri);
+        this.setState({source});
+    }
+
+    componentWillReceiveProps(newProps) {
+        const {uri} = newProps;
+        const source = this._getSource(uri);
+        this.setState({source});
+    }
+
     /**
      * Require the local Avatar if it is a default Avatar,
      * Else return the URI
      *
      */
-    const getSource = () => {
+    _getSource(uri) {
         if (AvatarUtils.isDefault(uri)) {
             const name = AvatarUtils.getDefaultName(uri);
             switch (name) {
@@ -32,16 +48,21 @@ const Avatar = ({uri, style, ...props}) => {
                     return require('../../assets/images/avatars/default_avatar_8.png');
             }
         }
+
         return {uri: uri + `?key=${Math.random()}`};
-    };
+    }
 
-    return (
-        <Image
-            source={getSource()}
-            style={[styles.avatar, style]}
-            {...props}
-        />
-    )
-};
+    render() {
+        const {style, ...props} = this.props;
+        const {source} = this.state;
 
-export default Avatar;
+        return (
+            <Image
+                source={source}
+                style={[styles.avatar, style]}
+                {...props}
+            />
+        )
+    }
+}
+
