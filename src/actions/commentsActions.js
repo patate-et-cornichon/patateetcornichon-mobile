@@ -1,7 +1,6 @@
 import {AsyncStorage} from 'react-native';
 import settings from '../config/settings';
 import {checkErrors} from '../utils/functions';
-import {CLEAR_COMMENTS, GET_COMMENTS} from './actionTypes';
 
 
 export const fetchComments = (recipeSlug, limit = 5, offset = 0) => async (dispatch, getState) => {

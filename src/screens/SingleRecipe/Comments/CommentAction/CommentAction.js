@@ -88,7 +88,7 @@ export default class CommentAction extends React.Component {
 
     render() {
         const {comment: originalComment} = this.props.navigation.state.params;
-        const {containerHeight: height} = this.state;
+        const {containerHeight: height, contentHeight} = this.state;
 
         return (
             <View style={styles.commentActionView}>
@@ -113,7 +113,7 @@ export default class CommentAction extends React.Component {
                         <Text style={styles.commentResponse}>Réponse :</Text>
                     }
                     <TextInput
-                        style={[styles.commentActionInput, {height: this.state.contentHeight}]}
+                        style={[styles.commentActionInput, {height: contentHeight}]}
                         onChangeText={content => this.setState({content})}
                         onContentSizeChange={event => this._changeContentSize(event)}
                         autoFocus={true}
