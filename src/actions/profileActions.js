@@ -19,21 +19,6 @@ export const saveAvatar = async (uri, extension) => {
 };
 
 /**
- * Change the user Avatar thanks to the URI provided in parameter
- *
- * @param uri
- * @param extension
- * @returns {function(*)}
- */
-export const changeAvatar = (uri, extension = 'jpg') => async dispatch => {
-    const avatar = await saveAvatar(uri, extension);
-    dispatch({
-        type: CHANGE_AVATAR,
-        user: {avatar}
-    });
-};
-
-/**
  * Send a request to the server in order to update the user info
  * Change the edited fields only
  *

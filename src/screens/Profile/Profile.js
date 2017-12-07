@@ -94,7 +94,7 @@ export default class Profile extends React.Component {
                         value
                     }
                 }
-            });
+            }, () => this._avatar.setAvatar());
         }
     }
 
@@ -125,6 +125,7 @@ export default class Profile extends React.Component {
                     <View style={styles.profileAvatarView}>
                         <Avatar uri={avatar.value}
                                 style={styles.profileAvatar}
+                                ref={c => this._avatar = c}
                         />
                     </View>
                 </TouchableWithoutFeedback>

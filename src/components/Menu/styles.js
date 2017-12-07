@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import {defaultBorderColor, defaultFontStyle} from '../../config/styles';
 
 
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         width
     },
     menuContentContainer: {
-        paddingTop: Platform.OS === 'ios' ? 30 : 10,
+        paddingTop: 30,
         paddingHorizontal: 20
     },
     menuUserName: {

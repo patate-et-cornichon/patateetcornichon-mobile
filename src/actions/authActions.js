@@ -121,7 +121,8 @@ const formatUser = async user => {
         const reg = /^(\w{3})$/;
         const extension = reg.test(avatarFileExtension) ? avatarFileExtension : 'jpg';
 
-        user.avatar = await saveAvatar(user.avatar, extension);
+        user.avatar = await saveAvatar(user.avatar, extension) + `?key=${Math.random()}`;
+        console.log(user.avatar)
     }
 
     return user;

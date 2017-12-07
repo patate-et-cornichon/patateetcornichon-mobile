@@ -1,4 +1,4 @@
-import {CHANGE_AVATAR, LOG_PROCESS_FINISHED, LOGIN, LOGOUT, REMOVE_USER, SET_VIEW_LOADED} from '../actions/actionTypes';
+import {LOG_PROCESS_FINISHED, LOGIN, LOGOUT} from '../actions/actionTypes';
 
 const initialState = {
     isLogged: false,
@@ -17,14 +17,6 @@ const auth = (state = initialState, action) => {
                 isLogged: true,
                 user,
                 logProcessFinished
-            };
-        case CHANGE_AVATAR:
-            return {
-                ...state,
-                user: {
-                    ...user,
-                    avatar: user.avatar
-                }
             };
         case LOGOUT:
             return {

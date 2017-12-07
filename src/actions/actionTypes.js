@@ -1,7 +1,6 @@
 /**
  * General
  */
-export const ADD_TOAST_COMPONENT = 'ADD_TOAST_COMPONENT';
 export const ADD_COMPONENT_REF = 'ADD_COMPONENT_REF';
 
 /**
@@ -11,7 +10,6 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REMOVE_USER = 'REMOVE_USER';
 export const LOG_PROCESS_FINISHED = 'LOG_PROCESS_FINISHED';
-export const SET_VIEW_LOADED = 'SET_VIEW_LOADED';
 
 /**
  * Network Actions
@@ -33,8 +31,3 @@ export const GET_FAVORITE_RECIPES = 'GET_FAVORITE_RECIPES';
  */
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const CLEAR_COMMENTS = 'CLEAR_COMMENTS';
-
-/**
- * Profile
- */
-export const CHANGE_AVATAR = 'CHANGE_AVATAR';
