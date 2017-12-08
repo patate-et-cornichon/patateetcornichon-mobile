@@ -1,11 +1,9 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Platform, StatusBar} from 'react-native';
 import * as authActions from '../actions/authActions';
 import Sign from '../screens/Login/Sign/Sign';
-import {backgroundColor} from '../screens/Login/Sign/styles';
-import {fontColor} from '../config/styles';
+import Header from '../components/Header/Header';
 
 
 class SignContainer extends React.Component {
@@ -14,13 +12,14 @@ class SignContainer extends React.Component {
         const title = target === 'create' ? 'Créer un compte' : 'S\'identifier';
 
         return ({
-            title: title,
-            headerTintColor: fontColor,
-            headerStyle: {
-                backgroundColor: backgroundColor,
-                shadowColor: 'transparent',
-                marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-            },
+            header: (
+                <Header title={title}
+                        leftIcon={{
+                            name: 'arrow-back',
+                            onPress: () => navigation.goBack()
+                        }}
+                />
+            )
         });
     };
 
