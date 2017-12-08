@@ -23,7 +23,7 @@ export default (state, action) => {
         );
     }
 
-    if (state && nextState) {
+    if (state && nextState && action.type !== NavigationActions.SET_PARAMS) {
         const stateRouteName = getCurrentRouteName(state);
         const nextStateRouteName = getCurrentRouteName(nextState);
         return stateRouteName === nextStateRouteName ? state : nextState;

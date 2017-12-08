@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     commentActionContainer: {
+        flex: 1,
         backgroundColor: 'white',
         padding: 20,
     },

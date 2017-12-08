@@ -12,6 +12,7 @@ export default class Sign extends React.Component {
     state = {
         email: 'kevinbarralon@gmail.com',
         password: 'Nephilim77',
+        first_name: 'Kevin',
         disabled: false,
         accountLoading: false
     };
@@ -28,7 +29,7 @@ export default class Sign extends React.Component {
             navigation
         } = this.props;
         const {target} = this.props.navigation.state.params;
-        let token, email, password;
+        let token, email, password, first_name;
 
         if (!isConnected) {
             return toast.show('error', 'Tu es hors ligne !');
@@ -48,9 +49,10 @@ export default class Sign extends React.Component {
         else {
             email = this.state.email;
             password = this.state.password;
+            first_name = this.state.first_name;
 
             /* Validations */
-            if (email === '' || password === '') {
+            if (email === '' || password === '' || (target === 'create' && first_name === '')) {
                 return toast.show('error', 'Des champs sont manquants :-)');
             }
             else if (!isEmail(email)) {
@@ -69,7 +71,7 @@ export default class Sign extends React.Component {
         try {
             /* If target is an account creation, request to the API User creation */
             if (target === 'create') {
-                await createUser({origin, token, email, password});
+                await createUser({origin, token, email, password, first_name});
             }
             /* We try to get the user's token if the target is login */
             else {
@@ -91,7 +93,7 @@ export default class Sign extends React.Component {
 
 
     render() {
-        const {email, password, disabled, accountLoading} = this.state;
+        const {email, password, first_name, disabled, accountLoading} = this.state;
         const {target} = this.props.navigation.state.params;
         const socialTarget = target === 'create' ? 'S\'inscrire' : 'Se logger';
 
@@ -121,6 +123,21 @@ export default class Sign extends React.Component {
 
                     {/* Alternative connection */}
                     <Text style={styles.emailAlternativeText}>ou avec ton email</Text>
+
+                    {/* Prénom */}
+                    {
+                        target === 'create' &&
+                        <Input
+                            style={{marginBottom: 15}}
+                            placeholderColor="#88939a"
+                            icon="mood"
+                            placeholder="Prénom"
+                            width="100%"
+                            keyboardAppearance="dark"
+                            onChangeText={(first_name) => this.setState({first_name})}
+                            value={first_name}
+                        />
+                    }
 
                     {/* Email */}
                     <Input

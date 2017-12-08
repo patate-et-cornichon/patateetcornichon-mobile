@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native';
+import {NavigationActions} from 'react-navigation';
 import settings from '../config/settings';
 import {checkErrors} from '../utils/functions';
 

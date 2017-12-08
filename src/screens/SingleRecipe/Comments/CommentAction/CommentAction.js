@@ -120,6 +120,7 @@ export default class CommentAction extends React.Component {
                         multiline={true}
                         textAlignVertical='top'
                         underlineColorAndroid='transparent'
+                        keyboardAppearance='dark'
                         blurOnSubmit={false}
                     />
                 </ScrollView>
