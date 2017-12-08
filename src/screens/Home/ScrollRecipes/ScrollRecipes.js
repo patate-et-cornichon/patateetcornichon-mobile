@@ -4,7 +4,11 @@ import Recipe from './Recipe/Recipe';
 import styles from './styles';
 
 
-const ScrollRecipes = ({recipes = [], recipesCategory = '', style = {}, navigation, actions}) => {
+export default class ScrollRecipes extends React.Component {
+    state = {
+        disabled: false
+    };
+
     /**
      * Get Recipe from database and navigate to SingleRecipe page
      *
@@ -12,41 +16,52 @@ const ScrollRecipes = ({recipes = [], recipesCategory = '', style = {}, navigati
      * @returns {Promise}
      * @private
      */
-    const _getRecipe = async recipeId => {
-        const {getRecipeFromDatabase} = actions;
-        const recipe = await getRecipeFromDatabase(recipeId);
-        navigation.navigate('SingleRecipe', {
-            recipe
-        })
+    _getRecipe = async recipeId => {
+        const {disabled} = this.state;
+
+        if (!disabled) {
+            const {actions: {getRecipeFromDatabase}, navigation} = this.props;
+            const recipe = await getRecipeFromDatabase(recipeId);
+
+            this.setState({disabled: true});
+
+            navigation.navigate('SingleRecipe', {
+                recipe
+            });
+
+            setTimeout(() => this.setState({disabled: false}), 1000)
+        }
     };
 
-    return (
-        <View style={[styles.recipesView, style]}>
-            {
-                recipesCategory !== '' &&
-                <Text style={styles.recipesCategory}>
-                    {recipesCategory}
-                </Text>
-            }
-            <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-            >
-                <FlatList
-                    horizontal={true}
-                    contentContainerStyle={styles.recipesContainer}
-                    data={recipes}
-                    keyExtractor={item => item.id}
-                    renderItem={({item, index}) => (
-                        <Recipe lastItem={index === recipes.length - 1}
-                                recipe={item}
-                                onPress={() => _getRecipe(item.id)}
-                        />
-                    )}
-                />
-            </ScrollView>
-        </View>
-    );
-};
+    render() {
+        const {recipes = [], recipesCategory = '', style = {}} = this.props;
 
-export default ScrollRecipes;
+        return (
+            <View style={[styles.recipesView, style]}>
+                {
+                    recipesCategory !== '' &&
+                    <Text style={styles.recipesCategory}>
+                        {recipesCategory}
+                    </Text>
+                }
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                >
+                    <FlatList
+                        horizontal={true}
+                        contentContainerStyle={styles.recipesContainer}
+                        data={recipes}
+                        keyExtractor={item => item.id}
+                        renderItem={({item, index}) => (
+                            <Recipe lastItem={index === recipes.length - 1}
+                                    recipe={item}
+                                    onPress={() => this._getRecipe(item.id)}
+                            />
+                        )}
+                    />
+                </ScrollView>
+            </View>
+        );
+    }
+}

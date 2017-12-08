@@ -24,9 +24,14 @@ export default (state, action) => {
     }
 
     if (state && nextState && action.type !== NavigationActions.SET_PARAMS) {
-        const stateRouteName = getCurrentRouteName(state);
-        const nextStateRouteName = getCurrentRouteName(nextState);
-        return stateRouteName === nextStateRouteName ? state : nextState;
+        const stateRoute = getCurrentRouteName(state);
+        const nextStateRoute = getCurrentRouteName(nextState);
+
+        if (nextStateRoute === 'SingleRecipe') {
+            return nextState || state;
+        }
+
+        return stateRoute === nextStateRoute ? state : nextState;
     }
 
     return nextState || state;
