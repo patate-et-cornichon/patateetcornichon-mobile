@@ -60,11 +60,16 @@ export default class Profile extends React.Component {
                 });
             };
 
+            const isLowerCase = input === 'url' || input === 'email';
+
             return (
                 <Input
+                    keyboardType={input === 'email' ? 'email-address' : 'default'}
                     placeholder={inputs[input].name}
                     value={inputs[input].value}
                     style={styles.profileInput}
+                    autoCapitalize={!isLowerCase}
+                    autoCorrect={!isLowerCase}
                     width="100%"
                     onChangeText={changeState}
                 />
