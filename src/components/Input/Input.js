@@ -25,7 +25,7 @@ export default class Input extends React.Component {
             backgroundColor = '#BDC3C7',
             width,
             color = '#616b72',
-            placeholderColor,
+            placeholderColor = '#88939a',
             icon,
             style,
             ...props

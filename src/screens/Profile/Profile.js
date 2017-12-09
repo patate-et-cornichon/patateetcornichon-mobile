@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, TouchableWithoutFeedback} from 'react-native';
+import {ScrollView, KeyboardAvoidingView, View, TouchableWithoutFeedback, Platform} from 'react-native';
 import {ImagePicker} from 'expo';
 import Input from '../../components/Input/Input';
 import Avatar from '../../components/Avatar/Avatar';
@@ -121,31 +121,38 @@ export default class Profile extends React.Component {
 
     render() {
         const {inputs: {avatar}, button: {disabled, loading}} = this.state;
+        const keyboardVerticalOffset = Platform.OS === 'ios'? 100 : 20;
 
         return (
             <ScrollView style={styles.profileView}>
+                <KeyboardAvoidingView behavior='position'
+                                      keyboardVerticalOffset={keyboardVerticalOffset}
+                                      style={styles.keyboardView}
 
-                {/* User Avatar */}
-                <TouchableWithoutFeedback onPress={() => this._launchImagePicker()}>
-                    <View style={styles.profileAvatarView}>
-                        <Avatar uri={avatar.value}
-                                style={styles.profileAvatar}
-                                ref={c => this._avatar = c}
-                        />
-                    </View>
-                </TouchableWithoutFeedback>
+                >
 
-                {/* Inputs */}
-                {
-                    this._renderFields()
-                }
+                    {/* User Avatar */}
+                    <TouchableWithoutFeedback onPress={() => this._launchImagePicker()}>
+                        <View style={styles.profileAvatarView}>
+                            <Avatar uri={avatar.value}
+                                    style={styles.profileAvatar}
+                                    ref={c => this._avatar = c}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
 
-                {/* Submit Button */}
-                <Button text='Mettre à jour'
-                        onPress={() => this._patchUserInfo()}
-                        disabled={disabled}
-                        loading={loading}
-                />
+                    {/* Inputs */}
+                    {
+                        this._renderFields()
+                    }
+
+                    {/* Submit Button */}
+                    <Button text='Mettre à jour'
+                            onPress={() => this._patchUserInfo()}
+                            disabled={disabled}
+                            loading={loading}
+                    />
+                </KeyboardAvoidingView>
             </ScrollView>
         )
     }

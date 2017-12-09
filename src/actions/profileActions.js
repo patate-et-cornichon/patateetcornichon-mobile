@@ -30,11 +30,13 @@ export const patchUserInfo = fields => async (dispatch, getState) => {
     const token = await AsyncStorage.getItem('@PatateEtCornichon:userToken');
 
     const data = new FormData();
+    let valuesLength = 0;
 
     for (const field of Object.keys(fields)) {
         const value = fields[field].value;
 
         if (user[field] !== value) {
+            valuesLength++;
             if (field === 'avatar') {
                 data.append('avatar', {
                     uri: value,
@@ -47,19 +49,23 @@ export const patchUserInfo = fields => async (dispatch, getState) => {
         }
     }
 
-    try {
-        const response = await fetch(`${settings.apiUrl}/core/users/self/`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Token ${token}`
-            },
-            body: data
-        });
-        await checkErrors(response);
-        await dispatch(loginRequest(true, false));
-        toast.show('success', 'Modifications enregistrées !');
-    } catch (e) {
-        toast.show('error', e.message);
+    if (valuesLength > 0) {
+        try {
+            const response = await fetch(`${settings.apiUrl}/core/users/self/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Token ${token}`
+                },
+                body: data
+            });
+            await checkErrors(response);
+            await dispatch(loginRequest(true, false));
+            toast.show('success', 'Modifications enregistrées !');
+        } catch (e) {
+            toast.show('error', e.message);
+        }
+    } else {
+        toast.show('success', 'Rien n\'a changé :-) !');
     }
 };
