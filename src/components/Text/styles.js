@@ -1,11 +1,11 @@
-import {StyleSheet} from 'react-native';
-import {fontColor} from '../../config/styles';
+import { StyleSheet } from 'react-native'
+import { fontColor } from '../../config/styles'
 
 const styles = StyleSheet.create({
-    text: {
-        fontFamily: 'roboto',
-        color: fontColor
-    }
-});
+  text: {
+    fontFamily: 'roboto',
+    color: fontColor
+  }
+})
 
-export default styles;
+export default styles

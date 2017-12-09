@@ -1,12 +1,11 @@
-import {StyleSheet} from 'react-native';
-import {primaryColor} from '../../../config/styles';
-
+import { StyleSheet } from 'react-native'
+import { primaryColor } from '../../../config/styles'
 
 const styles = StyleSheet.create({
-   categoriesView: {
-       backgroundColor: primaryColor,
-       height: 200
-   }
-});
+  categoriesView: {
+    backgroundColor: primaryColor,
+    height: 200
+  }
+})
 
-export default styles;
+export default styles

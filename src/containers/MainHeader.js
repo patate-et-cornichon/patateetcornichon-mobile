@@ -4,8 +4,8 @@ import Header from '../components/Header/Header'
 
 const MainHeaderContainer = ({title, user, components: {menu}}) => (
   <Header title={title}
-          enableUser={user}
-          menu={menu}
+    enableUser={user}
+    menu={menu}
   />
 )
 

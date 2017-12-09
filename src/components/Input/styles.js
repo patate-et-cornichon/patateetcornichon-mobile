@@ -15,6 +15,6 @@ const styles = {
     flex: 0.92,
     fontFamily: 'roboto'
   }
-};
+}
 
-export default styles;
+export default styles

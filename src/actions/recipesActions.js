@@ -101,27 +101,19 @@ const downloadImage = async (uri, fileName, suffix, cache = true) => {
 
   /**
    * If the image doesn't exist at all, we save it
+   * If the image exists in cache but we want to move it in document directory
+   * If the image exists in document directory but we want to move it in cache
    */
   if (!imageFromCacheExists && !imageFromStorageExists) {
     const {uri: imageDownloadedPath} = await FileSystem.downloadAsync(uri, imageFromCache)
     return imageDownloadedPath
-  }
-
-  /**
-   * If the image exists in cache but we want to move it in document directory
-   */
-  else if (imageFromCacheExists && cache === false) {
+  } else if (imageFromCacheExists && cache === false) {
     await FileSystem.moveAsync({
       from: imageFromCache,
       to: imageFromStorage
     })
     return imageFromStorage
-  }
-
-  /**
-   * If the image exists in document directory but we want to move it in cache
-   */
-  else if (imageFromStorageExists && cache === true) {
+  } else if (imageFromStorageExists && cache === true) {
     await FileSystem.moveAsync({
       from: imageFromStorage,
       to: imageFromCache
@@ -293,8 +285,7 @@ const manageFavoriteRecipe = (action, recipe) => async dispatch => {
       ...favoriteRecipesArray,
       recipe.id
     ]
-  }
-  else {
+  } else {
     favoriteRecipes = favoriteRecipesArray.filter(item => item !== recipe.id)
   }
 

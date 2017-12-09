@@ -9,17 +9,17 @@ class ProfileContainer extends React.Component {
   static navigationOptions = ({navigation}) => ({
     header: (
       <Header title='Mon profil'
-              leftIcon={{
-                name: 'arrow-back',
-                onPress: () => navigation.goBack()
-              }}
+        leftIcon={{
+          name: 'arrow-back',
+          onPress: () => navigation.goBack()
+        }}
       />
     )
   })
 
   render () {
     return (
-      <Profile {...this.props}/>
+      <Profile {...this.props} />
     )
   }
 }
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    ...profileActions,
+    ...profileActions
   }, dispatch)
 })
 

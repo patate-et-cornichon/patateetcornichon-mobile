@@ -38,10 +38,7 @@ export default class RecipesUtils {
     // If time less or equal than one hour, return time in minutes
     if (totalTime <= 60) {
       return `${totalTime} min`
-    }
-
-    // If time greater than 1 hour
-    else if (totalTime > 60) {
+    } else if (totalTime > 60) {
       const hours = Math.floor(totalTime / 60)
       const minutes = ('0' + totalTime % 60).slice(-2)
       return `${hours}h${minutes}min`

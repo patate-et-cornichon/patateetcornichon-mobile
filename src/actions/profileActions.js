@@ -1,5 +1,4 @@
 import { FileSystem } from 'expo'
-import { CHANGE_AVATAR } from './actionTypes'
 import settings from '../config/settings'
 import { AsyncStorage } from 'react-native'
 import { checkErrors } from '../utils/functions'

@@ -13,10 +13,10 @@ class SignContainer extends React.Component {
     return ({
       header: (
         <Header title={title}
-                leftIcon={{
-                  name: 'arrow-back',
-                  onPress: () => navigation.goBack()
-                }}
+          leftIcon={{
+            name: 'arrow-back',
+            onPress: () => navigation.goBack()
+          }}
         />
       )
     })
@@ -24,7 +24,7 @@ class SignContainer extends React.Component {
 
   render () {
     return (
-      <Sign {...this.props}/>
+      <Sign {...this.props} />
     )
   }
 }

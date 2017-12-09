@@ -7,17 +7,17 @@ import Search from '../screens/Search/Search'
 class SearchContainer extends React.Component {
   static navigationOptions = {
     header: (
-      <MainHeader title={'Kesk\'on mange ?'}/>
+      <MainHeader title={'Kesk\'on mange ?'} />
     ),
     tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='search'
-                                                              tintColor={tintColor}
-                                                              focused={focused}
+      tintColor={tintColor}
+      focused={focused}
     />
   }
 
   render () {
     return (
-      <Search {...this.props}/>
+      <Search {...this.props} />
     )
   }
 }

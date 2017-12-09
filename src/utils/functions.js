@@ -57,4 +57,3 @@ export async function checkErrors (response) {
 
   return body
 }
-

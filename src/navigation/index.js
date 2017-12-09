@@ -1,4 +1,3 @@
-import React from 'react'
 import { StackNavigator } from 'react-navigation'
 import PrivateRoutes from './privateRoutes'
 import PublicRoutes from './publicRoutes'

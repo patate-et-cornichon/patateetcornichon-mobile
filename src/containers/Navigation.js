@@ -36,7 +36,7 @@ class Navigation extends React.Component {
       'roboto-bold': require('../assets/fonts/Roboto-Bold.ttf'),
       'amatic': require('../assets/fonts/Amatic.ttf'),
       'junk-food': require('../assets/fonts/Junk-food.ttf'),
-      'recipe-icons': require('../assets/fonts/Recipe-icons.ttf'),
+      'recipe-icons': require('../assets/fonts/Recipe-icons.ttf')
     })
     await Font.loadAsync(MaterialIcons.font)
     await Font.loadAsync(MaterialCommunityIcons.font)
@@ -65,11 +65,11 @@ class Navigation extends React.Component {
 
     const navigation = addNavigationHelpers({
       dispatch,
-      state: nav,
+      state: nav
     })
 
     if (!logProcessFinished || !fontLoaded || !homeRecipesLoaded) {
-      return <AppLoading/>
+      return <AppLoading />
     }
 
     return (
@@ -108,7 +108,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     ...componentsActions,
-    ...networkActions,
+    ...networkActions
   }, dispatch),
   dispatch
 })

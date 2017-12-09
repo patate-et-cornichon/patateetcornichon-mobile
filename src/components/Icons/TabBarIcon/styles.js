@@ -1,10 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-    iconView: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
+  iconView: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
-export default styles;
+export default styles

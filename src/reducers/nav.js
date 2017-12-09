@@ -34,4 +34,4 @@ export default (state, action) => {
   }
 
   return nextState || state
-};
+}

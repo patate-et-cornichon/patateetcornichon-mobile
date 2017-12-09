@@ -1,6 +1,6 @@
-import {createIconSetFromIcoMoon} from '@expo/vector-icons';
-import icoMoonConfig from './config.json';
+import { createIconSetFromIcoMoon } from '@expo/vector-icons'
+import icoMoonConfig from './config.json'
 
-const RecipeIcon = createIconSetFromIcoMoon(icoMoonConfig, 'recipe-icons');
+const RecipeIcon = createIconSetFromIcoMoon(icoMoonConfig, 'recipe-icons')
 
-export default RecipeIcon;
+export default RecipeIcon

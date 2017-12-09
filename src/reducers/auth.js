@@ -4,7 +4,7 @@ const initialState = {
   isLogged: false,
   user: {},
   logProcessFinished: false,
-  viewLoaded: false,
+  viewLoaded: false
 }
 
 const auth = (state = initialState, action) => {

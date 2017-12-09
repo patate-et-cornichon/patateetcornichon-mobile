@@ -26,7 +26,7 @@ export const postComment = comment => async (dispatch, getState) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Token ${token}`,
+      'Authorization': `Token ${token}`
     },
     body: JSON.stringify(comment)
   })

@@ -49,35 +49,32 @@ export default class FormatHTML {
 
         return (
           <Text key={i}
-                style={[contentStyles, {color: primaryColor}]}
-                onPress={() => WebBrowser.openBrowserAsync(link)}
+            style={[contentStyles, {color: primaryColor}]}
+            onPress={() => WebBrowser.openBrowserAsync(link)}
           >
             {anchor}
           </Text>
         )
-      }
-      else if (/:-?\)/g.test(item)) {
+      } else if (/:-?\)/g.test(item)) {
         return (
           <InlineImage key={i}
-                       fadeDuration={0}
-                       source={happy}
-                       style={styles.smiley}
+            fadeDuration={0}
+            source={happy}
+            style={styles.smiley}
           />
         )
-      }
-      else if (/;-?\)/g.test(item)) {
+      } else if (/;-?\)/g.test(item)) {
         return (
           <InlineImage key={i}
-                       fadeDuration={0}
-                       source={wink}
-                       style={styles.smiley}
+            fadeDuration={0}
+            source={wink}
+            style={styles.smiley}
           />
         )
-      }
-      else {
+      } else {
         return (
           <Text key={i}
-                style={contentStyles}
+            style={contentStyles}
           >
             {item}
           </Text>

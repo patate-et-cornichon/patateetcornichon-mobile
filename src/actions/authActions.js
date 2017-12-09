@@ -24,7 +24,7 @@ export const logout = () => async dispatch => {
   })
   await AsyncStorage.multiRemove([
     '@PatateEtCornichon:userToken',
-    '@PatateEtCornichon:user',
+    '@PatateEtCornichon:user'
   ])
 }
 
@@ -47,23 +47,20 @@ export const loginRequest = (isConnected = true, processFinished = true) => asyn
 
   /**
    * If the user is not connected but has a token and self user info
-   */
-  if (!isConnected && token && user) {
-    isLogged = true
-    dispatch(login(JSON.parse(user)))
-  }
-
-  /**
+   *
    * If the user is connected we try to log the user via the Rest API
    * If an error occurs during the process, we remove the token and user info
    * And logout the user
    */
-  else if (token) {
+  if (!isConnected && token && user) {
+    isLogged = true
+    dispatch(login(JSON.parse(user)))
+  } else if (token) {
     try {
       const response = await fetch(`${settings.apiUrl}/core/users/self/`, {
         method: 'GET',
         headers: {
-          'Authorization': `Token ${token}`,
+          'Authorization': `Token ${token}`
         }
       })
       const {user: remoteUser} = await checkErrors(await response)
@@ -93,17 +90,17 @@ const _createOrLoginUser = async (apiEndpoint, userInfos) => {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(userInfos)
   })
   const {token} = await checkErrors(await response)
-  return await AsyncStorage.setItem('@PatateEtCornichon:userToken', token)
+  return AsyncStorage.setItem('@PatateEtCornichon:userToken', token)
 }
 
-export const createUser = userInfos => async dispatch => await _createOrLoginUser('/core/users/', userInfos)
+export const createUser = userInfos => async dispatch => _createOrLoginUser('/core/users/', userInfos)
 
-export const loginUser = userInfos => async dispatch => await _createOrLoginUser('/core/users/auth-token/', userInfos)
+export const loginUser = userInfos => async dispatch => _createOrLoginUser('/core/users/auth-token/', userInfos)
 
 /**
  * Format User info

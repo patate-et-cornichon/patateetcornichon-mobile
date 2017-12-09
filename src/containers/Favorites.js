@@ -7,16 +7,16 @@ import Favorites from '../screens/Favorites/Favorites'
 class FavoritesContainer extends React.Component {
   static navigationOptions = {
     header: (
-      <MainHeader title='Mes favoris'/>
+      <MainHeader title='Mes favoris' />
     ),
     tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='turned-in-not'
-                                                              tintColor={tintColor}
-                                                              focused={focused}/>
+      tintColor={tintColor}
+      focused={focused} />
   }
 
   render () {
     return (
-      <Favorites {...this.props}/>
+      <Favorites {...this.props} />
     )
   }
 }

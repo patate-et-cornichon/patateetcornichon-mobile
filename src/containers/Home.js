@@ -8,16 +8,16 @@ import { MaterialTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
 
 class HomeContainer extends React.Component {
   static navigationOptions = {
-    header: <MainHeader title='À table !'/>,
+    header: <MainHeader title='À table !' />,
     tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='home'
-                                                              tintColor={tintColor}
-                                                              focused={focused}
+      tintColor={tintColor}
+      focused={focused}
     />
   }
 
   render () {
     return (
-      <Home {...this.props}/>
+      <Home {...this.props} />
     )
   }
 }

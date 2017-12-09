@@ -1,3 +1,5 @@
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 # Patate & Cornichon iOS & Android App
 Application mobile du site Patate & Cornichon (https://patateetcornichon.com) actuellement en développement.
 

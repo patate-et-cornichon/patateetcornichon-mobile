@@ -5,7 +5,7 @@ import * as recipesActions from '../actions/recipesActions'
 import ScrollRecipes from '../screens/Home/ScrollRecipes/ScrollRecipes'
 
 const ScrollRecipesContainer = props => (
-  <ScrollRecipes {...props}/>
+  <ScrollRecipes {...props} />
 )
 
 const mapStateToProps = state => ({

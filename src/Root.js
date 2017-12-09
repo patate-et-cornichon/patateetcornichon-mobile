@@ -5,7 +5,7 @@ import AppWithNavigationState from './containers/Navigation'
 
 const Root = () => (
   <Provider store={store}>
-    <AppWithNavigationState/>
+    <AppWithNavigationState />
   </Provider>
 )
 

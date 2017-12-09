@@ -4,7 +4,7 @@ import settings from '../config/settings'
 export async function facebookLogin () {
   try {
     const {type, token} = await Facebook.logInWithReadPermissionsAsync(settings.facebookID, {
-      permissions: ['public_profile'],
+      permissions: ['public_profile']
     })
     if (type === 'success') {
       return token
@@ -20,7 +20,7 @@ export async function googleLogin () {
     const {type, accessToken} = await Google.logInAsync({
       androidClientId: settings.androidGoogleID,
       iosClientId: settings.iOSGoogleID,
-      scopes: ['profile', 'email'],
+      scopes: ['profile', 'email']
     })
     if (type === 'success') {
       return accessToken

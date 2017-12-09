@@ -12,7 +12,7 @@ class MenuContentContainer extends React.Component {
 
   render () {
     return (
-      <MenuContent {...this.props}/>
+      <MenuContent {...this.props} />
     )
   }
 }

@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^8.0.3",
     "jest-expo": "^23.0.0",
     "react-native-scripts": "1.6.0",
-    "react-test-renderer": "16.0.0-beta.5"
+    "react-test-renderer": "16.0.0-beta.5",
+    "standard": "^10.0.3"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -29,5 +31,9 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "validator": "^9.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [ "fetch", "FormData", "it", "expect" ]
   }
 }

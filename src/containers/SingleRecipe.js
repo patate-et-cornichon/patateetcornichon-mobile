@@ -10,17 +10,17 @@ class SingleRecipeContainer extends React.Component {
   static navigationOptions = ({navigation}) => ({
     header: (
       <Header title='Le manger'
-              leftIcon={{
-                name: 'arrow-back',
-                onPress: () => navigation.goBack(navigation.state.params.screenKey)
-              }}
+        leftIcon={{
+          name: 'arrow-back',
+          onPress: () => navigation.goBack(navigation.state.params.screenKey)
+        }}
       />
     )
   })
 
   render () {
     return (
-      <SingleRecipe {...this.props}/>
+      <SingleRecipe {...this.props} />
     )
   }
 }

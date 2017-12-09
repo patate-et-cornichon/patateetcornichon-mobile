@@ -1,5 +1,4 @@
-import React from 'react'
-import { Platform } from 'react-native'
+import { Platform, StatusBar } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import Home from '../containers/Home'
 import Recipes from '../containers/Recipes'
@@ -19,16 +18,16 @@ const cardStyle = {
 const Tab = TabNavigator(
   {
     Home: {
-      screen: Home,
+      screen: Home
     },
     Recipes: {
-      screen: Recipes,
+      screen: Recipes
     },
     Search: {
-      screen: Search,
+      screen: Search
     },
     Favorites: {
-      screen: Favorites,
+      screen: Favorites
     }
   },
   {
@@ -46,7 +45,7 @@ const Tab = TabNavigator(
       inactiveTintColor: 'white',
       style: {
         backgroundColor: secondaryColor,
-        borderTopWidth: 0,
+        borderTopWidth: 0
       },
       iconStyle: {
         width: 35,
