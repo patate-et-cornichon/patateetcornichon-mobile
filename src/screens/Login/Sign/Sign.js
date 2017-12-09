@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar} from 'react-native';
+import {View} from 'react-native';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import Text from '../../../components/Text/Text';
@@ -99,9 +99,6 @@ export default class Sign extends React.Component {
 
         return (
             <View style={styles.signProcessContainer}>
-                {/* StatusBar */}
-                <StatusBar barStyle="dark-content"/>
-
                 {/* Sign Wrapper */}
                 <View style={styles.signWrapper}>
 

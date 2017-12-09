@@ -1,25 +1,24 @@
-import React from 'react';
-import {StackNavigator} from 'react-navigation';
-import PrivateRoutes from './privateRoutes';
-import PublicRoutes from './publicRoutes';
-
+import React from 'react'
+import { StackNavigator } from 'react-navigation'
+import PrivateRoutes from './privateRoutes'
+import PublicRoutes from './publicRoutes'
 
 const AppNavigator = StackNavigator(
-    {
-        PublicRoutes: {
-            screen: PublicRoutes
-        },
-        PrivateRoutes: {
-            screen: PrivateRoutes
-        }
+  {
+    PublicRoutes: {
+      screen: PublicRoutes
     },
-    {
-        mode: 'modal',
-        headerMode: 'none',
-        cardStyle: {
-            shadowColor: 'transparent'
-        }
+    PrivateRoutes: {
+      screen: PrivateRoutes
     }
-);
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+    cardStyle: {
+      shadowColor: 'transparent'
+    }
+  }
+)
 
-export default AppNavigator;
+export default AppNavigator

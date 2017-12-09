@@ -32,10 +32,6 @@ const Header = ({title, enableUser, menu, leftIcon, rightIcon}) => {
             {/* Left Side */}
             <View style={styles.headerSide}>
                 {
-                    enableUser &&
-                    <UserAvatar user={enableUser} menu={menu}/>
-                }
-                {
                     leftIcon &&
                     <HeaderIcon icon={leftIcon}/>
                 }
@@ -54,6 +50,10 @@ const Header = ({title, enableUser, menu, leftIcon, rightIcon}) => {
 
             {/* Right Side */}
             <View style={styles.headerSide}>
+                {
+                    enableUser &&
+                    <UserAvatar user={enableUser} menu={menu}/>
+                }
                 {
                     rightIcon &&
                     <HeaderIcon icon={rightIcon}/>

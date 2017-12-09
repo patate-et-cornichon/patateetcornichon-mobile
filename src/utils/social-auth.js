@@ -1,32 +1,32 @@
-import {Facebook, Google} from 'expo';
-import settings from '../config/settings';
+import { Facebook, Google } from 'expo'
+import settings from '../config/settings'
 
-export async function facebookLogin() {
+export async function facebookLogin () {
   try {
     const {type, token} = await Facebook.logInWithReadPermissionsAsync(settings.facebookID, {
       permissions: ['public_profile'],
-    });
+    })
     if (type === 'success') {
-      return token;
+      return token
     }
-    return null;
+    return null
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
-export async function googleLogin() {
+export async function googleLogin () {
   try {
     const {type, accessToken} = await Google.logInAsync({
       androidClientId: settings.androidGoogleID,
       iosClientId: settings.iOSGoogleID,
       scopes: ['profile', 'email'],
-    });
+    })
     if (type === 'success') {
-      return accessToken;
+      return accessToken
     }
     return null
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }

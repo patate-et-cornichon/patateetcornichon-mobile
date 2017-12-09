@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, StatusBar} from 'react-native';
+import {View, Image} from 'react-native';
 import Button from '../../components/Button/Button';
 import Text from '../../components/Text/Text';
 import {Video} from 'expo';
@@ -13,9 +13,6 @@ const logoSource = require('../../assets/images/logo.png');
 const Login = ({navigation: {navigate}}) => {
     return (
         <View style={styles.signContainer}>
-
-            <StatusBar barStyle="light-content"/>
-
             {/* Background Video */}
             <Video
                 shouldPlay

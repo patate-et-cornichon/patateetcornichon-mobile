@@ -1,37 +1,29 @@
-import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Text} from 'react-native';
-import Header from '../components/Header/Header';
-import {MaterialIcons} from '@expo/vector-icons';
-import {MaterialCommunityTabBarIcon} from '../components/Icons/TabBarIcon/TabBarIcon';
-
+import React from 'react'
+import { connect } from 'react-redux'
+import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialCommunityTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
+import Recipes from '../screens/Recipes/Recipes'
 
 class RecipesContainer extends React.Component {
-    static navigationOptions = {
-        header: (
-            <Header title={'À table !'}
-            />
-        ),
-        tabBarIcon: ({focused, tintColor}) => <MaterialCommunityTabBarIcon name='hamburger'
-                                                                           tintColor={tintColor}
-                                                                           focused={focused}
-        />
-    };
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({focused, tintColor}) => <MaterialCommunityTabBarIcon name='hamburger'
+                                                                       tintColor={tintColor}
+                                                                       focused={focused}
+    />
+  }
 
-    render() {
-        return (
-            <Text>hello</Text>
-        )
-    }
+  render () {
+    return <Recipes {...this.props}/>
+  }
 }
 
 const mapStateToProps = state => ({
-    //
-});
+  //
+})
 
 const mapDispatchToProps = dispatch => ({
-    //
-});
+  //
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer)
