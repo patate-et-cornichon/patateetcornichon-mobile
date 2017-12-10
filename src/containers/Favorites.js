@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import MainHeader from '../containers/MainHeader'
 import { MaterialTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
 import Favorites from '../screens/Favorites/Favorites'
+import { FAVORITE_RECIPES } from '../config/locations'
 
 class FavoritesContainer extends React.Component {
   static navigationOptions = {
@@ -22,7 +23,7 @@ class FavoritesContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  favoriteRecipes: state.recipes.favoriteRecipes
+  favoriteRecipes: state.recipes[FAVORITE_RECIPES]
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -42,10 +42,11 @@ const Tab = TabNavigator(
       showLabel: false,
       showIcon: true,
       activeTintColor: primaryColor,
-      inactiveTintColor: 'white',
+      inactiveTintColor: secondaryColor,
       style: {
-        backgroundColor: secondaryColor,
-        borderTopWidth: 0
+        backgroundColor: 'white',
+        borderTopWidth: 0,
+        borderBottomWidth: 0
       },
       iconStyle: {
         width: 35,

@@ -1,6 +1,6 @@
 import {
   GET_FAVORITE_RECIPES,
-  GET_LAST_RECIPES,
+  GET_LAST_RECIPES, GET_RECIPES_BY_CATEGORIES,
   GET_RELATIVE_RECIPES,
   GET_SALTY_RECIPES,
   GET_SWEET_RECIPES,
@@ -9,12 +9,12 @@ import {
 
 const initialState = {
   homeRecipesLoaded: false,
-  categories: [],
   lastRecipes: [],
   sweetRecipes: [],
   saltyRecipes: [],
   relativeRecipes: [],
-  favoriteRecipes: []
+  favoriteRecipes: [],
+  recipesByCategories: []
 }
 
 const recipes = (state = initialState, action) => {
@@ -28,6 +28,11 @@ const recipes = (state = initialState, action) => {
       return {
         ...state,
         [fileNamespace]: recipes
+      }
+    case GET_RECIPES_BY_CATEGORIES:
+      return {
+        ...state,
+        recipesByCategories: recipes
       }
     case SET_HOME_RECIPES_LOADED:
       return {

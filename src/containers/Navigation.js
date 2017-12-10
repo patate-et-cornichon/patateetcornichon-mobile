@@ -35,6 +35,7 @@ class Navigation extends React.Component {
       'roboto': require('../assets/fonts/Roboto.ttf'),
       'roboto-bold': require('../assets/fonts/Roboto-Bold.ttf'),
       'amatic': require('../assets/fonts/Amatic.ttf'),
+      'pacifico': require('../assets/fonts/Pacifico.ttf'),
       'junk-food': require('../assets/fonts/Junk-food.ttf'),
       'recipe-icons': require('../assets/fonts/Recipe-icons.ttf')
     })

@@ -8,7 +8,6 @@ export const ADD_COMPONENT_REF = 'ADD_COMPONENT_REF'
  */
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
-export const REMOVE_USER = 'REMOVE_USER'
 export const LOG_PROCESS_FINISHED = 'LOG_PROCESS_FINISHED'
 
 /**
@@ -25,9 +24,9 @@ export const GET_SWEET_RECIPES = 'GET_SWEET_RECIPES'
 export const GET_SALTY_RECIPES = 'GET_SALTY_RECIPES'
 export const GET_RELATIVE_RECIPES = 'GET_RELATIVE_RECIPES'
 export const GET_FAVORITE_RECIPES = 'GET_FAVORITE_RECIPES'
+export const GET_RECIPES_BY_CATEGORIES = 'GET_RECIPES_BY_CATEGORIES'
 
 /**
- * Get comments
+ * Categories Actions
  */
-export const GET_COMMENTS = 'GET_COMMENTS'
-export const CLEAR_COMMENTS = 'CLEAR_COMMENTS'
+export const GET_CATEGORIES = 'GET_CATEGORIES'

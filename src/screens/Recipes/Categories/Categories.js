@@ -1,11 +1,20 @@
 import React from 'react'
 import { View } from 'react-native'
 import styles from './styles'
+import CategoryItem from './CategoryItem'
 
-export default class Categories extends React.Component {
-  render () {
-    return (
-      <View style={styles.categoriesView} />
-    )
-  }
-}
+const Categories = ({categories, activeCategory, changeCategory}) => (
+  <View style={styles.categoriesView}>
+    {
+      categories.map(category => (
+        <CategoryItem
+          category={category}
+          changeCategory={(category) => changeCategory(category)}
+          active={activeCategory === category.slug}
+        />
+      ))
+    }
+  </View>
+)
+
+export default Categories

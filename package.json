@@ -34,6 +34,11 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "globals": [ "fetch", "FormData", "it", "expect" ]
+    "globals": [
+      "fetch",
+      "FormData",
+      "it",
+      "expect"
+    ]
   }
 }

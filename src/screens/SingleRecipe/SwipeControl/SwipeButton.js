@@ -66,7 +66,7 @@ export default class SwipeButton extends React.Component {
               size={45}
               style={{
                 transform: [
-                                  {scale: bounceValue}
+                  {scale: bounceValue}
                 ]
               }}
               color={color}

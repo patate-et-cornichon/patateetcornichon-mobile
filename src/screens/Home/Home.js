@@ -1,6 +1,7 @@
 import React from 'react'
 import { RefreshControl, ScrollView } from 'react-native'
 import ScrollRecipes from '../../containers/ScrollRecipes'
+import { LAST_RECIPES, SALTY_RECIPES, SWEET_RECIPES } from '../../config/locations'
 
 class Home extends React.Component {
   state = {
@@ -34,15 +35,15 @@ class Home extends React.Component {
           onRefresh={() => this._onRefresh()}
         />
       }>
-        <ScrollRecipes recipes={recipes.lastRecipes}
+        <ScrollRecipes recipes={recipes[LAST_RECIPES]}
           recipesCategory={'Les dernières recettes'}
           navigation={navigation}
         />
-        <ScrollRecipes recipes={recipes.sweetRecipes}
+        <ScrollRecipes recipes={recipes[SWEET_RECIPES]}
           recipesCategory={'Les recettes sucrées'}
           navigation={navigation}
         />
-        <ScrollRecipes recipes={recipes.saltyRecipes}
+        <ScrollRecipes recipes={recipes[SALTY_RECIPES]}
           recipesCategory={'Les recettes salées'}
           navigation={navigation}
         />

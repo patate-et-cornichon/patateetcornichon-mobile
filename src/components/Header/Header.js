@@ -1,14 +1,15 @@
+import { MaterialIcons } from '@expo/vector-icons'
 import React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
+import Avatar from '../Avatar/Avatar'
 import Text from '../Text/Text'
 import styles from './styles'
-import { MaterialIcons } from '@expo/vector-icons'
-import Avatar from '../Avatar/Avatar'
 
 const UserAvatar = ({user, menu}) => (
   <TouchableWithoutFeedback
     onPress={() => menu.open()}>
-    <Avatar uri={user.avatar}
+    <Avatar
+      uri={user.avatar}
       style={styles.userAvatar}
     />
   </TouchableWithoutFeedback>
@@ -16,7 +17,8 @@ const UserAvatar = ({user, menu}) => (
 
 const HeaderIcon = ({icon: {onPress, name, disabled = false}}) => (
   <TouchableWithoutFeedback onPress={onPress} disabled={disabled}>
-    <MaterialIcons name={name}
+    <MaterialIcons
+      name={name}
       style={styles.headerIcon}
       size={28}
       color={styles.title.color}

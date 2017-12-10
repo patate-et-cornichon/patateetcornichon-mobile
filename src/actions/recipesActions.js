@@ -2,14 +2,25 @@ import { AsyncStorage } from 'react-native'
 import { FileSystem } from 'expo'
 import {
   GET_FAVORITE_RECIPES,
-  GET_LAST_RECIPES,
+  GET_LAST_RECIPES, GET_RECIPES_BY_CATEGORIES,
   GET_RELATIVE_RECIPES,
   GET_SALTY_RECIPES,
   GET_SWEET_RECIPES,
   SET_HOME_RECIPES_LOADED
 } from './actionTypes'
+import {
+  FAVORITE_RECIPES,
+  getLocation,
+  LAST_RECIPES,
+  NAMESPACE,
+  RECIPE,
+  RELATIVE_RECIPES,
+  SALTY_RECIPES,
+  SWEET_RECIPES
+} from '../config/locations'
 import settings from '../config/settings'
 import FormatHTML from '../utils/formatHTML'
+import { checkErrors } from '../utils/functions'
 
 const getRecipes = (type, fileNamespace, recipes) => ({
   type,
@@ -26,11 +37,10 @@ const setHomeRecipesLoaded = () => ({
  * Save Recipe if not
  *
  * @param recipe
- * @param cache
  * @returns {Promise.<void>}
  */
 const saveRecipeInStorage = async recipe => {
-  const recipesExists = await AsyncStorage.getItem(`@PatateEtCornichon:recipe:${recipe.id}`)
+  const recipesExists = await AsyncStorage.getItem(`${getLocation(RECIPE)}:${recipe.id}`)
 
   /**
    * Save recipe into AsyncStorage
@@ -55,7 +65,7 @@ const saveRecipeInStorage = async recipe => {
     recipe.recipe_steps = FormatHTML.convertListToArray(recipe.recipe_steps)
 
     await AsyncStorage.setItem(
-      `@PatateEtCornichon:recipe:${recipe.id}`,
+      `${getLocation(RECIPE)}:${recipe.id}`,
       JSON.stringify(recipe)
     )
   }
@@ -131,8 +141,8 @@ const downloadImage = async (uri, fileName, suffix, cache = true) => {
  * @returns {Promise}
  */
 const clearRecipes = async fileNamespace => {
-  const recipesListFromStorage = await AsyncStorage.getItem(`@PatateEtCornichon:${fileNamespace}`)
-  const recipesFavorite = await AsyncStorage.getItem('@PatateEtCornichon:favoriteRecipes')
+  const recipesListFromStorage = await AsyncStorage.getItem(`${NAMESPACE}${fileNamespace}`)
+  const recipesFavorite = await AsyncStorage.getItem(getLocation(FAVORITE_RECIPES))
 
   if (recipesListFromStorage) {
     const recipesList = JSON.parse(recipesListFromStorage).filter(id => {
@@ -141,7 +151,7 @@ const clearRecipes = async fileNamespace => {
       }
       return true
     })
-    const recipeIds = recipesList.map(id => `@PatateEtCornichon:recipe:${id}`)
+    const recipeIds = recipesList.map(id => `${getLocation(RECIPE)}:${id}`)
     await AsyncStorage.multiRemove(recipeIds)
   }
 }
@@ -185,7 +195,7 @@ const fetchRecipes = (actionType, fileNamespace, endpoint) => async (dispatch, g
      * Save the recipes ID in a list
      */
     const recipesId = recipes.map(recipe => recipe.id)
-    await AsyncStorage.setItem(`@PatateEtCornichon:${fileNamespace}`, JSON.stringify(recipesId))
+    await AsyncStorage.setItem(`${NAMESPACE}${fileNamespace}`, JSON.stringify(recipesId))
   }
 
   const recipes = await loadRecipesFromDatabase(fileNamespace)
@@ -203,14 +213,14 @@ const loadRecipesFromDatabase = async fileNamespace => {
   /**
    * Load Recipes from Database
    */
-  const recipesIdFromStorage = await AsyncStorage.getItem(`@PatateEtCornichon:${fileNamespace}`)
+  const recipesIdFromStorage = await AsyncStorage.getItem(`${NAMESPACE}${fileNamespace}`)
   let recipes = []
 
   /**
    * Save them in an object in order to send all recipes to Redux state
    */
   if (recipesIdFromStorage) {
-    const recipesId = JSON.parse(recipesIdFromStorage).map(id => `@PatateEtCornichon:recipe:${id}`)
+    const recipesId = JSON.parse(recipesIdFromStorage).map(id => `${getLocation(RECIPE)}:${id}`)
     const stores = await AsyncStorage.multiGet(recipesId)
     stores.map(async (result, i, store) => {
       recipes = [
@@ -245,7 +255,7 @@ const manageFavoriteRecipe = (action, recipe) => async dispatch => {
    *
    * @type {string}
    */
-  const recipePath = `@PatateEtCornichon:recipe:${recipe.id}`
+  const recipePath = `${getLocation(RECIPE)}:${recipe.id}`
 
   /**
    * Get recipe from storage
@@ -271,7 +281,7 @@ const manageFavoriteRecipe = (action, recipe) => async dispatch => {
   /**
    * Get the array of favorite recipe IDs
    */
-  const favoriteRecipesLocation = '@PatateEtCornichon:favoriteRecipes'
+  const favoriteRecipesLocation = getLocation(FAVORITE_RECIPES)
   const favoriteRecipesStorage = await AsyncStorage.getItem(favoriteRecipesLocation)
   const favoriteRecipesArray = favoriteRecipesStorage ? JSON.parse(favoriteRecipesStorage) : []
 
@@ -302,7 +312,7 @@ const manageFavoriteRecipe = (action, recipe) => async dispatch => {
  * @param recipeId
  */
 export const isRecipeFavorite = recipeId => async () => {
-  const favoriteRecipesList = await AsyncStorage.getItem('@PatateEtCornichon:favoriteRecipes')
+  const favoriteRecipesList = await AsyncStorage.getItem(getLocation(FAVORITE_RECIPES))
   if (favoriteRecipesList) {
     return JSON.parse(favoriteRecipesList).includes(recipeId)
   }
@@ -333,14 +343,14 @@ export const removeRecipeAsFavorite = recipe => async dispatch => {
  * @returns {function(*)}
  */
 export const getFavoriteRecipes = () => async dispatch => {
-  const recipes = await loadRecipesFromDatabase('favoriteRecipes')
-  dispatch(getRecipes(GET_FAVORITE_RECIPES, 'favoriteRecipes', recipes))
+  const recipes = await loadRecipesFromDatabase(FAVORITE_RECIPES)
+  dispatch(getRecipes(GET_FAVORITE_RECIPES, FAVORITE_RECIPES, recipes))
 }
 
 export const fetchLastRecipes = limit => async dispatch => {
   return dispatch(fetchRecipes(
     GET_LAST_RECIPES,
-    'lastRecipes',
+    LAST_RECIPES,
     `?limit=${limit}&offset=0`
   ))
 }
@@ -348,7 +358,7 @@ export const fetchLastRecipes = limit => async dispatch => {
 export const fetchSweetRecipes = limit => dispatch => {
   return dispatch(fetchRecipes(
     GET_SWEET_RECIPES,
-    'sweetRecipes',
+    SWEET_RECIPES,
     `?category=sucre&random=true&offset=0&limit=${limit}`
   ))
 }
@@ -356,7 +366,7 @@ export const fetchSweetRecipes = limit => dispatch => {
 export const fetchSaltyRecipes = limit => dispatch => {
   return dispatch(fetchRecipes(
     GET_SALTY_RECIPES,
-    'saltyRecipes',
+    SALTY_RECIPES,
     `?category=sale&random=true&offset=0&limit=${limit}`
   ))
 }
@@ -364,13 +374,13 @@ export const fetchSaltyRecipes = limit => dispatch => {
 export const fetchRelativeRecipes = (recipeSlug, limit = 3) => dispatch => {
   return dispatch(fetchRecipes(
     GET_RELATIVE_RECIPES,
-    'relativeRecipes',
+    RELATIVE_RECIPES,
     `${recipeSlug}/relative/?limit=${limit}`
   ))
 }
 
 export const getRecipeFromDatabase = recipeId => async () => {
-  const recipe = await AsyncStorage.getItem(`@PatateEtCornichon:recipe:${recipeId}`)
+  const recipe = await AsyncStorage.getItem(`${getLocation(RECIPE)}:${recipeId}`)
   return JSON.parse(recipe)
 }
 
@@ -381,7 +391,7 @@ export const getHomeRecipes = limit => async (dispatch, getState) => {
   const {network} = getState()
   try {
     if (network) {
-      await clearRecipesFromMultipleNamespaces(['lastRecipes', 'sweetRecipes', 'saltyRecipes'])
+      await clearRecipesFromMultipleNamespaces([LAST_RECIPES, SWEET_RECIPES, SALTY_RECIPES])
     }
     await dispatch(fetchLastRecipes(limit))
     await dispatch(fetchSweetRecipes(limit))
@@ -390,4 +400,27 @@ export const getHomeRecipes = limit => async (dispatch, getState) => {
   } finally {
     dispatch(setHomeRecipesLoaded())
   }
+}
+
+export const getRecipesByCategories = (offset = 0, category = null, add = true, limit = 10) => async (dispatch, getState) => {
+  const {recipes: {recipesByCategories}} = getState()
+  const categoryParam = category ? `&category=${category}` : ''
+  const recipesEndpoint = `${settings.apiUrl}/junk-food/recipes/?limit=${limit}&offset=${offset}${categoryParam}`
+
+  const response = await fetch(recipesEndpoint, {
+    method: 'GET'
+  })
+  let recipes = await checkErrors(await response)
+
+  if (add) {
+    recipes = [
+      ...recipesByCategories,
+      ...recipes
+    ]
+  }
+
+  dispatch({
+    type: GET_RECIPES_BY_CATEGORIES,
+    recipes
+  })
 }
