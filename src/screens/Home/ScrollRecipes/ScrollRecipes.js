@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, ScrollView, Text, View } from 'react-native'
+import shortid from 'shortid'
 import Recipe from './Recipe/Recipe'
 import styles from './styles'
 
@@ -53,7 +54,8 @@ export default class ScrollRecipes extends React.Component {
             data={recipes}
             keyExtractor={item => item.id}
             renderItem={({item, index}) => (
-              <Recipe lastItem={index === recipes.length - 1}
+              <Recipe
+                lastItem={index === recipes.length - 1}
                 recipe={item}
                 onPress={() => this._getRecipe(item.id)}
               />

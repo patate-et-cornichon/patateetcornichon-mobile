@@ -1,10 +1,11 @@
 {
   "expo": {
     "name": "Patate & Cornichon",
+    "privacy": "unlisted",
     "description": "L'application de cuisine vegan pour les grosses feignasses",
     "slug": "patateetcornichon",
     "orientation": "portrait",
-    "sdkVersion": "23.0.0",
+    "sdkVersion": "24.0.0",
     "icon": "./src/assets/images/patate-et-cornichon-logo.png"
   }
 }

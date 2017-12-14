@@ -67,7 +67,7 @@ export default class Profile extends React.Component {
           placeholder={inputs[input].name}
           value={inputs[input].value}
           style={styles.profileInput}
-          autoCapitalize={!isLowerCase}
+          autoCapitalize={isLowerCase ? 'none' : 'sentences'}
           autoCorrect={!isLowerCase}
           width='100%'
           onChangeText={changeState}
@@ -85,7 +85,8 @@ export default class Profile extends React.Component {
     const options = {
       allowsEditing: true,
       quality: 0.5,
-      aspect: [1, 1]
+      aspect: [1, 1],
+      mediaTypes: ImagePicker.MediaTypeOptions.Images
     }
     const {cancelled, uri: value} = await ImagePicker.launchImageLibraryAsync(options)
 
@@ -123,7 +124,7 @@ export default class Profile extends React.Component {
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 100 : 20
 
     return (
-      <ScrollView style={styles.profileView}>
+      <ScrollView contentContainerStyle={styles.profileView}>
         <KeyboardAvoidingView behavior='position'
           keyboardVerticalOffset={keyboardVerticalOffset}
           style={styles.keyboardView}
