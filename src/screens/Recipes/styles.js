@@ -1,11 +1,13 @@
 import {StyleSheet} from 'react-native'
+import { defaultBackground } from '../../config/styles'
 
 const styles = StyleSheet.create({
   recipesView: {
     flex: 1
   },
   recipesFlatList: {
-    backgroundColor: 'white',
+    backgroundColor: defaultBackground,
+    paddingVertical: 15,
     paddingHorizontal: 15
   }
 })

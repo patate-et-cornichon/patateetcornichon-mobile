@@ -1,25 +1,34 @@
-import { StyleSheet, Platform } from 'react-native'
-import { primaryColor } from '../../../config/styles'
+import { StyleSheet } from 'react-native'
+import { secondaryColor } from '../../../config/styles'
 
 const styles = StyleSheet.create({
+  categoriesText: {
+    paddingTop: 15,
+    paddingHorizontal: 15,
+    color: '#ccc',
+    letterSpacing: 3
+  },
   categoriesView: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 10 : 0,
-    paddingHorizontal: 50,
-    backgroundColor: primaryColor,
-    height: 120
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    height: 130
   },
   categoryItemView: {
-    alignItems: 'center'
-  },
-  categoryItemIconView: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: 100,
+    width: 100,
+    borderRadius: 5,
+    shadowOpacity: 0.05,
+    shadowColor: '#515151',
+    shadowOffset: { width: 0, height: 0 },
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  categoryItemName: {
+    marginTop: 6,
+    color: secondaryColor
   }
 })
 

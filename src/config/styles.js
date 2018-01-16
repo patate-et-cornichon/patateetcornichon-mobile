@@ -6,6 +6,7 @@ export const primaryColor = '#e5c014'
 export const secondaryColor = '#172349'
 
 export const fontColor = '#41484d'
+export const placeholderColor = '#c6c6c6'
 
 export const successColor = '#8bc34a'
 export const errorColor = '#f44336'

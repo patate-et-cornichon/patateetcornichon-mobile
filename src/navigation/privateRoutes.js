@@ -2,7 +2,7 @@ import { Platform, StatusBar } from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import Home from '../containers/Home'
 import Recipes from '../containers/Recipes'
-import Search from '../containers/Search'
+import Shop from '../containers/Shop'
 import Favorites from '../containers/Favorites'
 import SingleRecipe from '../containers/SingleRecipe'
 import CommentAction from '../containers/CommentAction'
@@ -23,8 +23,8 @@ const Tab = TabNavigator(
     Recipes: {
       screen: Recipes
     },
-    Search: {
-      screen: Search
+    Shop: {
+      screen: Shop
     },
     Favorites: {
       screen: Favorites

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { MaterialCommunityTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
+import { MaterialTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
 import Recipes from '../screens/Recipes/Recipes'
 import * as categoriesActions from '../actions/categoriesActions'
 import * as recipesActions from '../actions/recipesActions'
@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 class RecipesContainer extends React.Component {
   static navigationOptions = {
     header: null,
-    tabBarIcon: ({focused, tintColor}) => <MaterialCommunityTabBarIcon name='hamburger'
+    tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='search'
       tintColor={tintColor}
       focused={focused}
     />

@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, FlatList, StatusBar } from 'react-native'
-import Categories from './Categories/Categories'
-import SubCategories from './SubCategories/SubCategories'
+import { View, ScrollView, FlatList, StatusBar } from 'react-native'
+import shortid from 'shortid'
 import styles from './styles'
 import RecipeCard from './RecipeCard/RecipeCard'
 import Text from '../../components/Text/Text'
+import Header from './Header/Header'
+import Categories from './Categories'
 
 export default class Recipes extends React.PureComponent {
   LIMIT = 10
@@ -32,8 +33,6 @@ export default class Recipes extends React.PureComponent {
    */
   async _changeCategory (category) {
     const {activeCategory} = this.state
-
-    this._flatList.scrollToOffset({x: 0, y: 0, animated: true})
 
     if (activeCategory === category.slug) {
       await this.setState({
@@ -94,37 +93,42 @@ export default class Recipes extends React.PureComponent {
     const {activeCategory, subCategories, isLoading} = this.state
 
     return (
-      <View style={styles.recipesView}>
-        <StatusBar barStyle='light-content' />
-        {/* Categories */}
-        <Categories
-          categories={categories}
-          changeCategory={category => this._changeCategory(category)}
-          activeCategory={activeCategory}
-        />
+      <ScrollView style={styles.recipesView}>
+        <StatusBar barStyle='dark-content' />
 
-        {/* SubCategories */}
-        <SubCategories
-          subCategories={subCategories}
-        />
+        {/* Header */}
+        <Header />
 
         {/* Recipes */}
+        <View>
+          {/* Categories */}
+          <Categories
+            categories={categories}
+            changeCategory={category => this._changeCategory(category)}
+            activeCategory={activeCategory}
+          />
+        </View>
         {
           recipes.length > 0 &&
           <FlatList
-            ref={c => (this._flatList = c)}
+            keyExtractor={() => shortid.generate()}
             onScroll={({nativeEvent}) => this._handleScroll(nativeEvent)}
             scrollEventThrottle={0}
             contentContainerStyle={styles.recipesFlatList}
             data={recipes}
-            renderItem={({item}) => <RecipeCard recipe={item} keyExtractor={item => item.id} />}
+            renderItem={({item}) => (
+              <RecipeCard
+                recipe={item}
+                keyExtractor={item => item.id}
+              />
+            )}
           />
         }
         {
           isLoading &&
           <Text>Loading...</Text>
         }
-      </View>
+      </ScrollView>
     )
   }
 }

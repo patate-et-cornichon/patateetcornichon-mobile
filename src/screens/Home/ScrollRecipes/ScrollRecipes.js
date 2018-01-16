@@ -52,7 +52,7 @@ export default class ScrollRecipes extends React.Component {
             horizontal
             contentContainerStyle={styles.recipesContainer}
             data={recipes}
-            keyExtractor={item => item.id}
+            keyExtractor={() => shortid.generate()}
             renderItem={({item, index}) => (
               <Recipe
                 lastItem={index === recipes.length - 1}

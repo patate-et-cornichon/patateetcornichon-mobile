@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import MainHeader from '../containers/MainHeader'
 import { MaterialTabBarIcon } from '../components/Icons/TabBarIcon/TabBarIcon'
-import Search from '../screens/Search/Search'
+import Shop from '../screens/Shop/Shop'
 
-class SearchContainer extends React.Component {
+class ShopContainer extends React.Component {
   static navigationOptions = {
     header: (
       <MainHeader title={'Kesk\'on mange ?'} />
     ),
-    tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='search'
+    tabBarIcon: ({focused, tintColor}) => <MaterialTabBarIcon name='shopping-basket'
       tintColor={tintColor}
       focused={focused}
     />
@@ -17,7 +17,7 @@ class SearchContainer extends React.Component {
 
   render () {
     return (
-      <Search {...this.props} />
+      <Shop {...this.props} />
     )
   }
 }
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
   //
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ShopContainer)

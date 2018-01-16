@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Animated, TouchableWithoutFeedback } from 'react-native'
 import FoodIcon from '../../../components/Icons/FoodIcon/FoodIcon'
 import styles from './styles'
-import { primaryColor } from '../../../config/styles'
+import { primaryColor, secondaryColor } from '../../../config/styles'
+import Text from '../../../components/Text/Text'
 
 const AnimatedFoodIcon = Animated.createAnimatedComponent(FoodIcon)
 
@@ -50,19 +51,14 @@ export default class CategoryItem extends React.Component {
       <TouchableWithoutFeedback onPress={() => changeCategory(category)}>
         <View style={styles.categoryItemView}>
           {/* Icon */}
-          <Animated.View style={[
-            styles.categoryItemIconView,
-            {
-              backgroundColor: categoryColor,
-              transform: [{scale}]
-            }
-          ]}>
-            <AnimatedFoodIcon
-              name={category.css_class}
-              size={45}
-              color={primaryColor}
-            />
-          </Animated.View>
+          <AnimatedFoodIcon
+            name={category.css_class}
+            size={45}
+            color={secondaryColor}
+          />
+          <Text style={styles.categoryItemName}>
+            {category.name}
+          </Text>
         </View>
       </TouchableWithoutFeedback>
     )
