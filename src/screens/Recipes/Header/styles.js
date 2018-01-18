@@ -1,10 +1,12 @@
-import { Platform, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { placeholderColor } from '../../../config/styles'
 
 const styles = StyleSheet.create({
   headerView: {
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'ios' ? 15 : 0,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: placeholderColor
   }
 })
 

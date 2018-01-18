@@ -1,11 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
-import Moment from '../../../../utils/moment'
-import Text from '../../../../components/Text/Text'
+import Moment from '../../../utils/moment'
+import Text from '../../../components/Text/Text'
+import { defaultDateColor } from '../../../config/styles'
 import styles from './styles'
-
-const defaultDateColor = '#dadada'
 
 const RecipeDate = ({date, dateColor}) => (
   <View style={styles.recipeTimeView}>

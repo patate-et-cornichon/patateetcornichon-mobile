@@ -1,15 +1,24 @@
 import {StyleSheet} from 'react-native'
-import { defaultBackground } from '../../../config/styles'
+import { primaryColor } from '../../../config/styles'
 
-const borderRadius = 15
+const borderRadius = 5
 
 const styles = StyleSheet.create({
   recipeBorder: {
-    shadowOpacity: 0.30,
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
     shadowColor: '#515151',
-    shadowOffset: { height: 2, width: 5 },
+    shadowOffset: { height: 5, width: 5 },
     borderRadius,
     marginBottom: 20
+  },
+  recipeOverlay: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+    borderRadius
   },
   recipeCardView: {
     borderRadius,
@@ -18,9 +27,22 @@ const styles = StyleSheet.create({
   recipeImage: {
     height: 250
   },
-  recipeInfoView: {
-    height: 50,
-    backgroundColor: defaultBackground
+  recipeTimerView: {
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+    bottom: 0,
+    right: 0,
+    padding: 3,
+    margin: 10,
+    borderRadius: 3,
+    backgroundColor: primaryColor
+  },
+  recipeTimer: {
+    paddingLeft: 3,
+    fontSize: 14,
+    fontFamily: 'roboto-bold',
+    color: 'white'
   }
 })
 

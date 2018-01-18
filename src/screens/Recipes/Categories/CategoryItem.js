@@ -4,6 +4,7 @@ import FoodIcon from '../../../components/Icons/FoodIcon/FoodIcon'
 import styles from './styles'
 import { primaryColor, secondaryColor } from '../../../config/styles'
 import Text from '../../../components/Text/Text'
+import { shadeColor } from '../../../utils/functions'
 
 const AnimatedFoodIcon = Animated.createAnimatedComponent(FoodIcon)
 
@@ -54,10 +55,10 @@ export default class CategoryItem extends React.Component {
           <AnimatedFoodIcon
             name={category.css_class}
             size={45}
-            color={secondaryColor}
+            style={styles.categoryIcon}
           />
           <Text style={styles.categoryItemName}>
-            {category.name}
+            {category.name.toUpperCase()}
           </Text>
         </View>
       </TouchableWithoutFeedback>

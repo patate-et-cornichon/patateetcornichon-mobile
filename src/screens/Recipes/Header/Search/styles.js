@@ -1,12 +1,14 @@
-import { StyleSheet } from 'react-native'
-import { fontColor, placeholderColor } from '../../../../config/styles'
+import { Platform, StyleSheet } from 'react-native'
+import { fontColor, headerHeight } from '../../../../config/styles'
 
 const styles = StyleSheet.create({
   searchView: {
     flexDirection: 'row',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: placeholderColor,
-    paddingVertical: 15
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    height: headerHeight,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
+    backgroundColor: 'white'
   },
   searchInput: {
     paddingLeft: 10,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import RecipeDate from './RecipeDate/RecipeDate'
+import RecipeDate from '../../../components/Recipes/RecipeDate'
 import styles from './styles'
 import { fontColor } from '../../../config/styles'
 import Favorite from './Favorite'

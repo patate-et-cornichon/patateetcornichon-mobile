@@ -26,9 +26,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  categoryIcon: {
+    color: secondaryColor,
+    backgroundColor: 'transparent'
+  },
   categoryItemName: {
     marginTop: 6,
-    color: secondaryColor
+    fontSize: 11,
+    fontFamily: 'roboto-bold',
+    color: secondaryColor,
+    backgroundColor: 'transparent'
   }
 })
 

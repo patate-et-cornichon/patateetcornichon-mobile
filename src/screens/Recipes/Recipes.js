@@ -6,6 +6,7 @@ import RecipeCard from './RecipeCard/RecipeCard'
 import Text from '../../components/Text/Text'
 import Header from './Header/Header'
 import Categories from './Categories'
+import Search from './Header/Search'
 
 export default class Recipes extends React.PureComponent {
   LIMIT = 10
@@ -93,22 +94,26 @@ export default class Recipes extends React.PureComponent {
     const {activeCategory, subCategories, isLoading} = this.state
 
     return (
-      <ScrollView style={styles.recipesView}>
+      <View style={styles.recipesView}>
         <StatusBar barStyle='dark-content' />
 
-        {/* Header */}
-        <Header />
+        {/* Search */}
+        <Search />
 
-        {/* Recipes */}
-        <View>
-          {/* Categories */}
-          <Categories
-            categories={categories}
-            changeCategory={category => this._changeCategory(category)}
-            activeCategory={activeCategory}
+        <ScrollView>
+          {/* Header */}
+          <Header />
+
+          {/* Recipes */}
+          <View>
+            {/* Categories */}
+            <Categories
+              categories={categories}
+              changeCategory={category => this._changeCategory(category)}
+              activeCategory={activeCategory}
           />
-        </View>
-        {
+          </View>
+          {
           recipes.length > 0 &&
           <FlatList
             keyExtractor={() => shortid.generate()}
@@ -124,11 +129,12 @@ export default class Recipes extends React.PureComponent {
             )}
           />
         }
-        {
+          {
           isLoading &&
           <Text>Loading...</Text>
         }
-      </ScrollView>
+        </ScrollView>
+      </View>
     )
   }
 }

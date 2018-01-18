@@ -1,9 +1,8 @@
 import React from 'react'
 import { Image, TouchableWithoutFeedback, View } from 'react-native'
 import { LinearGradient } from 'expo'
-import Text from '../../../../components/Text/Text'
 import styles from './styles'
-import RecipeDate from '../../../SingleRecipe/RecipeActionsBar/RecipeDate/RecipeDate'
+import RecipeCardInfo from '../../../../components/Recipes/RecipeCardInfo'
 
 const Recipe = ({recipe, lastItem, onPress}) => (
   <TouchableWithoutFeedback onPress={onPress}>
@@ -20,18 +19,12 @@ const Recipe = ({recipe, lastItem, onPress}) => (
         style={styles.recipeOverlay}
       />
 
-      {/* Recipe info */}
-      <View style={styles.recipeTitlesView}>
-        <Text style={[styles.recipeTitles, styles.recipeMainTitle]}>
-          {recipe.title.toUpperCase()}
-        </Text>
-        <Text style={[styles.recipeTitles, styles.recipeSubTitle]}>
-          {recipe.sub_title.toUpperCase()}
-        </Text>
-
-        {/* Recipe date */}
-        <RecipeDate date={recipe.created_at} />
-      </View>
+      {/* Recipe Card Info */}
+      <RecipeCardInfo
+        title={recipe.title}
+        subTitle={recipe.sub_title}
+        createdAt={recipe.created_at}
+      />
     </View>
   </TouchableWithoutFeedback>
 )
