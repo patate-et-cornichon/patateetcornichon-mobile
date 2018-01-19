@@ -6,19 +6,19 @@ import styles from './styles'
 
 const RecipeMeta = props => {
   const {
-    recipe_yield,
+    recipeYield,
     difficulty,
-    preparation_time,
-    cooking_time,
-    leavening_time,
-    fridge_time
+    preparationTime,
+    cookingTime,
+    leaveningTime,
+    fridgeTime
   } = props
 
   return (
     <View style={styles.recipeMetaView}>
       {/* Yield */}
       <Meta name='Pour'
-        data={recipe_yield}
+        data={recipeYield}
         icon='yield'
       />
 
@@ -30,33 +30,33 @@ const RecipeMeta = props => {
 
       {/* Preparation */}
       <Meta name='Préparation'
-        data={RecipesUtils.minutesToHours(preparation_time)}
+        data={RecipesUtils.minutesToHours(preparationTime)}
         icon='preparation'
       />
 
       {/* Cooking Time */}
       {
-        cooking_time &&
+        cookingTime &&
         <Meta name='Cuisson'
-          data={RecipesUtils.minutesToHours(cooking_time)}
+          data={RecipesUtils.minutesToHours(cookingTime)}
           icon='cooking'
         />
       }
 
       {/* Leavening time */}
       {
-        leavening_time &&
+        leaveningTime &&
         <Meta name='Pose'
-          data={RecipesUtils.minutesToHours(leavening_time)}
+          data={RecipesUtils.minutesToHours(leaveningTime)}
           icon='leavening'
         />
       }
 
       {/* Fridge time */}
       {
-        fridge_time &&
+        fridgeTime &&
         <Meta name='Frigo'
-          data={RecipesUtils.minutesToHours(fridge_time)}
+          data={RecipesUtils.minutesToHours(fridgeTime)}
           icon='fridge'
         />
       }

@@ -21,6 +21,7 @@ export default class Search extends React.Component {
           style={styles.searchInput}
           keyboardAppearance='dark'
           placeholder="Qu'est-ce qu'on mange ?"
+          underlineColorAndroid='transparent'
           placeholderTextColor={placeholderColor}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}

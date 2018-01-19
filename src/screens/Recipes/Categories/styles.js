@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { secondaryColor } from '../../../config/styles'
 
 const styles = StyleSheet.create({
   categoriesText: {
@@ -19,22 +18,18 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 5,
-    shadowOpacity: 0.05,
     shadowColor: '#515151',
     shadowOffset: { width: 0, height: 0 },
-    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center'
   },
   categoryIcon: {
-    color: secondaryColor,
     backgroundColor: 'transparent'
   },
   categoryItemName: {
     marginTop: 6,
     fontSize: 11,
     fontFamily: 'roboto-bold',
-    color: secondaryColor,
     backgroundColor: 'transparent'
   }
 })

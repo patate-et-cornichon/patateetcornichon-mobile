@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
   },
   recipesFlatList: {
     backgroundColor: defaultBackground,
-    paddingVertical: 15,
-    paddingHorizontal: 15
+    paddingVertical: 15
   }
 })
 

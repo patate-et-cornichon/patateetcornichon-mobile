@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, FlatList, StatusBar } from 'react-native'
+import { View, ScrollView, FlatList, StatusBar, ActivityIndicator } from 'react-native'
 import shortid from 'shortid'
 import styles from './styles'
 import RecipeCard from './RecipeCard/RecipeCard'
@@ -17,7 +17,8 @@ export default class Recipes extends React.PureComponent {
     subCategories: [],
     recipesCategory: null,
     recipesPage: 0,
-    isLoading: false
+    isLoading: false,
+    isAddLoading: false
   }
 
   componentWillMount () {
@@ -63,7 +64,8 @@ export default class Recipes extends React.PureComponent {
   }
 
   async _getRecipes (add = true) {
-    this.setState({isLoading: true})
+    const loadingType = add ? 'isAddLoading' : 'isLoading'
+    this.setState({[loadingType]: true})
 
     const {recipesCategory, recipesPage} = this.state
     const newRecipesPage = add ? recipesPage + this.LIMIT : 0
@@ -75,7 +77,7 @@ export default class Recipes extends React.PureComponent {
     const {actions: {getRecipesByCategories}} = this.props
     await getRecipesByCategories(newRecipesPage, recipesCategory, add)
 
-    this.setState({isLoading: false})
+    this.setState({[loadingType]: false})
   }
 
   async _handleScroll ({layoutMeasurement, contentOffset, contentSize}) {
@@ -91,7 +93,7 @@ export default class Recipes extends React.PureComponent {
 
   render () {
     const {categories, recipes} = this.props
-    const {activeCategory, subCategories, isLoading} = this.state
+    const {activeCategory, isLoading, isAddLoading} = this.state
 
     return (
       <View style={styles.recipesView}>
@@ -100,7 +102,7 @@ export default class Recipes extends React.PureComponent {
         {/* Search */}
         <Search />
 
-        <ScrollView>
+        <ScrollView onScroll={({nativeEvent}) => this._handleScroll(nativeEvent)}>
           {/* Header */}
           <Header />
 
@@ -114,10 +116,9 @@ export default class Recipes extends React.PureComponent {
           />
           </View>
           {
-          recipes.length > 0 &&
-          <FlatList
+          recipes.length > 0 && !isLoading
+          ? <FlatList
             keyExtractor={() => shortid.generate()}
-            onScroll={({nativeEvent}) => this._handleScroll(nativeEvent)}
             scrollEventThrottle={0}
             contentContainerStyle={styles.recipesFlatList}
             data={recipes}
@@ -128,9 +129,10 @@ export default class Recipes extends React.PureComponent {
               />
             )}
           />
+            : <ActivityIndicator />
         }
           {
-          isLoading &&
+          isAddLoading &&
           <Text>Loading...</Text>
         }
         </ScrollView>

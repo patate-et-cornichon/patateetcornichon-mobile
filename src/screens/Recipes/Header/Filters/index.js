@@ -17,9 +17,11 @@ const Filters = (props) => (
   <View style={styles.filtersView}>
     {/* Filters Length */}
     <View style={styles.filtersLengthView}>
-      <Text style={styles.filtersCount}>
-        0
-      </Text>
+      <View style={styles.filtersCountView}>
+        <Text style={styles.filtersCount}>
+          0
+        </Text>
+      </View>
       <Text style={styles.filtersName}>
         TAGS
       </Text>

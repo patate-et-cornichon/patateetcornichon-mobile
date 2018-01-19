@@ -4,11 +4,13 @@ import { primaryColor } from '../../../config/styles'
 const borderRadius = 5
 
 const styles = StyleSheet.create({
-  recipeBorder: {
+  recipeCardView: {
     shadowOpacity: 0.4,
     shadowRadius: 8,
     shadowColor: '#515151',
     shadowOffset: { height: 5, width: 5 },
+    elevation: 5,
+    marginHorizontal: 15,
     borderRadius,
     marginBottom: 20
   },
@@ -20,12 +22,9 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius
   },
-  recipeCardView: {
-    borderRadius,
-    overflow: 'hidden'
-  },
   recipeImage: {
-    height: 250
+    height: 250,
+    borderRadius
   },
   recipeTimerView: {
     position: 'absolute',

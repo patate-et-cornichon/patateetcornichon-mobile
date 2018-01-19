@@ -14,6 +14,7 @@ export default class Favorites extends React.Component {
       return (
         <ScrollView style={styles.favoriteView}>
           <FlatList
+            numColumns={2}
             data={favoriteRecipes}
             contentContainerStyle={styles.flatList}
             renderItem={({item}) => (

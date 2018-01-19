@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   flatList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexDirection: 'column'
   },
   recipeImage: {
     width: imageSize,

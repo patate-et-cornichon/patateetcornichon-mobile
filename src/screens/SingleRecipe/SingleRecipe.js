@@ -222,7 +222,14 @@ export default class SingleRecipe extends React.Component {
           />
 
           {/* Recipe Meta */}
-          <RecipeMeta {...recipe} />
+          <RecipeMeta
+            recipeYield={recipe['recipe_yield']}
+            difficulty={recipe.difficulty}
+            preparationTime={recipe['preparation_time']}
+            cookingTime={recipe['cooking_time']}
+            leaveningTime={recipe['leavening_time']}
+            fridgeTime={recipe['fridge_time']}
+          />
 
           {/* Swiper Buttons Control */}
           <SwipeControl

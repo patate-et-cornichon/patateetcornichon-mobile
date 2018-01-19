@@ -17,18 +17,20 @@ const styles = StyleSheet.create({
     borderRightWidth: StyleSheet.hairlineWidth,
     borderRightColor: placeholderColor
   },
-  filtersCount: {
+  filtersCountView: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 22,
     height: 22,
-    lineHeight: 22,
     borderRadius: 11,
     overflow: 'hidden',
-    textAlign: 'center',
-    fontSize: 14,
     backgroundColor: secondaryColor,
-    color: 'white',
-    fontFamily: 'roboto-bold',
     marginRight: 7
+  },
+  filtersCount: {
+    fontSize: 14,
+    color: 'white',
+    fontFamily: 'roboto-bold'
   },
   filtersName: {
     letterSpacing: 2,

@@ -29,7 +29,7 @@ export default class Sign extends React.Component {
       navigation
     } = this.props
     const {target} = this.props.navigation.state.params
-    let token, email, password, first_name
+    let token, email, password, firstName
 
     if (!isConnected) {
       return toast.show('error', 'Tu es hors ligne !')
@@ -43,10 +43,10 @@ export default class Sign extends React.Component {
     } else {
       email = this.state.email
       password = this.state.password
-      first_name = this.state.first_name
+      firstName = this.state.first_name
 
       /* Validations */
-      if (email === '' || password === '' || (target === 'create' && first_name === '')) {
+      if (email === '' || password === '' || (target === 'create' && firstName === '')) {
         return toast.show('error', 'Des champs sont manquants :-)')
       } else if (!isEmail(email)) {
         return toast.show('error', 'L\'email n\'est pas valide')
@@ -66,7 +66,7 @@ export default class Sign extends React.Component {
        * We try to get the user's token if the target is login
        */
       if (target === 'create') {
-        await createUser({origin, token, email, password, first_name})
+        await createUser({origin, token, email, password, 'first_name': firstName})
       } else {
         await loginUser({origin, token, email, password})
       }
@@ -84,7 +84,7 @@ export default class Sign extends React.Component {
   }
 
   render () {
-    const {email, password, first_name, disabled, accountLoading} = this.state
+    const {email, password, firstName, disabled, accountLoading} = this.state
     const {target} = this.props.navigation.state.params
     const socialTarget = target === 'create' ? 'S\'inscrire' : 'Se logger'
 
@@ -122,8 +122,8 @@ export default class Sign extends React.Component {
               placeholder='Prénom'
               width='100%'
               keyboardAppearance='dark'
-              onChangeText={(first_name) => this.setState({first_name})}
-              value={first_name}
+              onChangeText={(firstName) => this.setState({firstName: firstName})}
+              value={firstName}
             />
           }
 
