@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "babel-eslint": "^8.0.3",
-    "jest-expo": "^24.0.0",
-    "react-native-scripts": "1.6.0",
-    "react-test-renderer": "16.0.0-beta.5",
-    "standard": "^10.0.3"
+    "babel-eslint": "^10.0.3",
+    "jest-expo": "^35.0.0",
+    "react-native-scripts": "2.0.1",
+    "react-test-renderer": "16.9.0",
+    "standard": "^14.3.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -21,18 +21,18 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/vector-icons": "^6.2.1",
-    "expo": "^24.0.0",
+    "@expo/vector-icons": "^10.0.5",
+    "expo": "^35.0.0",
     "moment": "^2.19.1",
-    "react": "16.0.0",
+    "react": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
-    "react-native-dotenv": "^0.1.0",
-    "react-navigation": "^1.0.0-beta.21",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
+    "react-native-dotenv": "^0.2.0",
+    "react-navigation": "^4.0.6",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
-    "validator": "^9.0.0"
+    "validator": "^11.1.0"
   },
   "standard": {
     "parser": "babel-eslint",
