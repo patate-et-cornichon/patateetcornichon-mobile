@@ -1,4 +1,4 @@
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Greenkeeper badge](https://badges.greenkeeper.io/patate-et-cornichon/patateetcornichon-mobile.svg)](https://greenkeeper.io/)
 
 # Patate & Cornichon iOS & Android App
 Application mobile du site Patate & Cornichon (https://patateetcornichon.com) actuellement en développement.
